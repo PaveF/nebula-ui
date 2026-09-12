@@ -1,6 +1,4 @@
--- Nebula UI Library v1.0.0
--- Drawing-based menu framework for Matcha.
--- loadstring(readfile("nebula_ui.lua"))()  ->  global 'Nebula'
+-- made by vxa_020
 
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
@@ -10,7 +8,7 @@ local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 
 local Nebula = {}
-Nebula.Version = "1.0.0"
+Nebula.Version = "2.0.0"
 Nebula.Loaded = false
 Nebula.Unloaded = false
 Nebula.Options = {}
@@ -39,137 +37,137 @@ local function C3(r, g, b) return Color3.fromRGB(r, g, b) end
 
 Themes.Dark = {
 	name = "Dark",
-	accent = C3(150, 120, 255),
-	accent2 = C3(120, 90, 255),
-	text = C3(237, 237, 245),
-	textDim = C3(135, 135, 160),
-	textFaint = C3(95, 95, 120),
-	bg = C3(13, 13, 18),
-	title = C3(19, 19, 27),
-	content = C3(13, 13, 18),
-	tab = C3(15, 15, 22),
-	tabHover = C3(23, 23, 33),
-	tabActive = C3(35, 29, 62),
-	tabActiveAccent = C3(150, 120, 255),
-	element = C3(20, 20, 29),
-	elementHover = C3(27, 27, 38),
-	elementPress = C3(16, 16, 24),
-	field = C3(16, 16, 24),
-	fieldHover = C3(23, 23, 33),
-	border = C3(37, 37, 52),
-	toggleOff = C3(50, 50, 70),
-	toggleOn = C3(150, 120, 255),
-	sliderTrack = C3(35, 35, 50),
-	sliderFill = C3(150, 120, 255),
-	scroll = C3(55, 55, 75),
-	scrollHover = C3(75, 75, 100),
-	success = C3(96, 210, 145),
-	warning = C3(245, 190, 75),
-	danger = C3(245, 100, 105),
+	accent = C3(139, 92, 246),
+	accent2 = C3(167, 139, 250),
+	text = C3(245, 245, 250),
+	textDim = C3(155, 155, 175),
+	textFaint = C3(90, 90, 112),
+	bg = C3(9, 10, 15),
+	title = C3(15, 16, 24),
+	content = C3(10, 11, 17),
+	tab = C3(12, 13, 20),
+	tabHover = C3(23, 23, 34),
+	tabActive = C3(38, 28, 61),
+	tabActiveAccent = C3(167, 139, 250),
+	element = C3(17, 18, 27),
+	elementHover = C3(25, 26, 38),
+	elementPress = C3(12, 13, 20),
+	field = C3(13, 14, 22),
+	fieldHover = C3(25, 26, 38),
+	border = C3(35, 36, 50),
+	toggleOff = C3(55, 56, 72),
+	toggleOn = C3(139, 92, 246),
+	sliderTrack = C3(34, 35, 49),
+	sliderFill = C3(139, 92, 246),
+	scroll = C3(61, 62, 82),
+	scrollHover = C3(94, 95, 125),
+	success = C3(52, 211, 153),
+	warning = C3(251, 191, 36),
+	danger = C3(248, 113, 113),
 	dialogOverlay = C3(0, 0, 0),
-	accentBar = C3(150, 120, 255),
+	accentBar = C3(139, 92, 246),
 	titleBarText = C3(255, 255, 255),
 }
 
 Themes.Midnight = {
 	name = "Midnight",
-	accent = C3(96, 205, 255),
-	accent2 = C3(60, 160, 255),
-	text = C3(233, 240, 248),
-	textDim = C3(130, 148, 168),
-	textFaint = C3(90, 108, 128),
-	bg = C3(8, 12, 20),
-	title = C3(12, 18, 30),
+	accent = C3(56, 189, 248),
+	accent2 = C3(125, 211, 252),
+	text = C3(240, 247, 255),
+	textDim = C3(148, 166, 188),
+	textFaint = C3(88, 108, 132),
+	bg = C3(7, 11, 18),
+	title = C3(11, 17, 28),
 	content = C3(8, 12, 20),
 	tab = C3(10, 16, 26),
-	tabHover = C3(16, 24, 38),
-	tabActive = C3(18, 42, 66),
-	tabActiveAccent = C3(96, 205, 255),
+	tabHover = C3(18, 27, 42),
+	tabActive = C3(20, 45, 70),
+	tabActiveAccent = C3(125, 211, 252),
 	element = C3(14, 22, 34),
-	elementHover = C3(20, 30, 46),
-	elementPress = C3(11, 17, 27),
+	elementHover = C3(21, 31, 47),
+	elementPress = C3(10, 17, 28),
 	field = C3(10, 16, 25),
-	fieldHover = C3(16, 24, 36),
+	fieldHover = C3(18, 27, 40),
 	border = C3(28, 42, 58),
-	toggleOff = C3(40, 56, 74),
-	toggleOn = C3(96, 205, 255),
+	toggleOff = C3(43, 58, 77),
+	toggleOn = C3(56, 189, 248),
 	sliderTrack = C3(28, 42, 58),
-	sliderFill = C3(96, 205, 255),
+	sliderFill = C3(56, 189, 248),
 	scroll = C3(45, 65, 85),
-	scrollHover = C3(66, 92, 118),
-	success = C3(90, 210, 155),
-	warning = C3(250, 190, 80),
-	danger = C3(240, 105, 115),
+	scrollHover = C3(70, 96, 124),
+	success = C3(74, 222, 128),
+	warning = C3(250, 204, 21),
+	danger = C3(248, 113, 113),
 	dialogOverlay = C3(0, 0, 0),
-	accentBar = C3(96, 205, 255),
+	accentBar = C3(56, 189, 248),
 	titleBarText = C3(255, 255, 255),
 }
 
 Themes.Neon = {
 	name = "Neon",
-	accent = C3(0, 240, 170),
-	accent2 = C3(0, 190, 255),
-	text = C3(232, 242, 238),
-	textDim = C3(125, 150, 142),
-	textFaint = C3(85, 108, 100),
-	bg = C3(8, 14, 12),
-	title = C3(12, 20, 17),
-	content = C3(8, 14, 12),
-	tab = C3(10, 17, 15),
-	tabHover = C3(18, 28, 24),
-	tabActive = C3(12, 60, 46),
-	tabActiveAccent = C3(0, 240, 170),
-	element = C3(16, 25, 22),
-	elementHover = C3(22, 34, 30),
-	elementPress = C3(12, 20, 18),
-	field = C3(11, 18, 16),
-	fieldHover = C3(17, 27, 24),
-	border = C3(32, 48, 42),
-	toggleOff = C3(44, 62, 56),
-	toggleOn = C3(0, 240, 170),
-	sliderTrack = C3(30, 46, 40),
-	sliderFill = C3(0, 240, 170),
-	scroll = C3(48, 68, 60),
-	scrollHover = C3(70, 98, 86),
-	success = C3(90, 220, 150),
-	warning = C3(250, 210, 80),
-	danger = C3(245, 110, 115),
+	accent = C3(45, 212, 191),
+	accent2 = C3(94, 234, 212),
+	text = C3(236, 253, 250),
+	textDim = C3(134, 168, 160),
+	textFaint = C3(76, 112, 103),
+	bg = C3(7, 14, 13),
+	title = C3(11, 21, 19),
+	content = C3(8, 15, 14),
+	tab = C3(10, 18, 16),
+	tabHover = C3(19, 32, 29),
+	tabActive = C3(13, 55, 46),
+	tabActiveAccent = C3(45, 212, 191),
+	element = C3(15, 26, 23),
+	elementHover = C3(22, 36, 32),
+	elementPress = C3(11, 20, 18),
+	field = C3(10, 18, 16),
+	fieldHover = C3(17, 29, 26),
+	border = C3(30, 50, 44),
+	toggleOff = C3(43, 64, 57),
+	toggleOn = C3(45, 212, 191),
+	sliderTrack = C3(29, 47, 42),
+	sliderFill = C3(45, 212, 191),
+	scroll = C3(48, 70, 62),
+	scrollHover = C3(72, 102, 90),
+	success = C3(74, 222, 128),
+	warning = C3(250, 204, 21),
+	danger = C3(248, 113, 113),
 	dialogOverlay = C3(0, 0, 0),
-	accentBar = C3(0, 240, 170),
+	accentBar = C3(45, 212, 191),
 	titleBarText = C3(255, 255, 255),
 }
 
 Themes.Light = {
 	name = "Light",
-	accent = C3(110, 96, 255),
-	accent2 = C3(88, 70, 240),
-	text = C3(30, 30, 40),
-	textDim = C3(110, 110, 130),
-	textFaint = C3(155, 155, 175),
-	bg = C3(245, 245, 250),
-	title = C3(238, 238, 245),
-	content = C3(245, 245, 250),
-	tab = C3(239, 239, 246),
-	tabHover = C3(230, 230, 240),
-	tabActive = C3(226, 222, 255),
-	tabActiveAccent = C3(110, 96, 255),
+	accent = C3(99, 102, 241),
+	accent2 = C3(129, 140, 248),
+	text = C3(24, 24, 32),
+	textDim = C3(100, 100, 120),
+	textFaint = C3(150, 150, 170),
+	bg = C3(242, 243, 247),
+	title = C3(250, 250, 252),
+	content = C3(244, 245, 249),
+	tab = C3(237, 238, 244),
+	tabHover = C3(227, 228, 237),
+	tabActive = C3(229, 226, 255),
+	tabActiveAccent = C3(99, 102, 241),
 	element = C3(255, 255, 255),
-	elementHover = C3(246, 246, 252),
-	elementPress = C3(235, 235, 245),
-	field = C3(235, 235, 243),
-	fieldHover = C3(228, 228, 238),
-	border = C3(222, 222, 234),
-	toggleOff = C3(205, 205, 220),
-	toggleOn = C3(110, 96, 255),
-	sliderTrack = C3(215, 215, 230),
-	sliderFill = C3(110, 96, 255),
-	scroll = C3(195, 195, 214),
-	scrollHover = C3(170, 170, 195),
-	success = C3(60, 170, 105),
-	warning = C3(215, 160, 40),
-	danger = C3(225, 80, 90),
+	elementHover = C3(248, 248, 252),
+	elementPress = C3(235, 235, 243),
+	field = C3(238, 239, 245),
+	fieldHover = C3(229, 230, 239),
+	border = C3(220, 221, 231),
+	toggleOff = C3(200, 201, 216),
+	toggleOn = C3(99, 102, 241),
+	sliderTrack = C3(214, 215, 227),
+	sliderFill = C3(99, 102, 241),
+	scroll = C3(193, 194, 210),
+	scrollHover = C3(169, 170, 191),
+	success = C3(34, 197, 94),
+	warning = C3(234, 179, 8),
+	danger = C3(239, 68, 68),
 	dialogOverlay = C3(0, 0, 0),
-	accentBar = C3(110, 96, 255),
+	accentBar = C3(99, 102, 241),
 	titleBarText = C3(255, 255, 255),
 }
 
@@ -593,11 +591,11 @@ function BaseHandle:Destroy()
 	end
 end
 
-local TITLE_H = 40
-local ACCENT_H = 2
-local CONTENT_PAD_X = 12
-local ELEMENT_GAP = 4
-local SCROLLBAR_W = 4
+local TITLE_H = 48
+local ACCENT_H = 1
+local CONTENT_PAD_X = 16
+local ELEMENT_GAP = 7
+local SCROLLBAR_W = 3
 
 local chrome = {}
 
@@ -662,7 +660,7 @@ local function createButton(tab, config)
 		Description = config.Description,
 		Callback = config.Callback,
 		_ownerTab = tab,
-		Height = config.Description and 44 or 34,
+		Height = config.Description and 50 or 40,
 		_hoverT = 0,
 		_visible = false,
 		Value = nil,
@@ -710,11 +708,11 @@ local function createButton(tab, config)
 			)
 		end
 		el._bg.Color = bg
-		el._bg.Corner = 6
+		el._bg.Corner = 10
 		setRect(el._bg, cx, y, cw, el.h)
-		setText(el._title, el.Title or "Button", cx + 12, y + (el.Description and 5 or 10), 13, th.text, false, true)
+		setText(el._title, el.Title or "Button", cx + 15, y + (el.Description and 7 or 12), 13, th.text, false, true)
 		if el.Description then
-			setText(el._desc, el.Description, cx + 12, y + 22, 11, th.textDim, false, true)
+			setText(el._desc, el.Description, cx + 15, y + 27, 11, th.textDim, false, true)
 		end
 		if state.Click and hov then
 			safeCallback(el.Callback)
@@ -746,7 +744,7 @@ local function createToggle(tab, config)
 	}, BaseHandle)
 
 	el.HeightFn = function()
-		return el.Description and 44 or 34
+		return el.Description and 50 or 40
 	end
 
 	local kbConfig = config.Keybind
@@ -816,23 +814,23 @@ local function createToggle(tab, config)
 			intRound(lerpN(th.element.G * 255, hover.G * 255, el._hoverT)),
 			intRound(lerpN(th.element.B * 255, hover.B * 255, el._hoverT))
 		)
-		el._bg.Corner = 6
+		el._bg.Corner = 10
 		setRect(el._bg, cx, y, cw, h)
-		setText(el._title, el.Title or "", cx + 12, y + (el.Description and 6 or 10), 13, th.text, false, true)
+		setText(el._title, el.Title or "", cx + 15, y + (el.Description and 7 or 12), 13, th.text, false, true)
 		if el.Description then
-			setText(el._desc, el.Description, cx + 12, y + 22, 11, th.textDim, false, true)
+			setText(el._desc, el.Description, cx + 15, y + 27, 11, th.textDim, false, true)
 		end
 
-		local tx = cx + cw - 46
-		local trackW = 34
-		local trackH = 18
+		local tx = cx + cw - 52
+		local trackW = 40
+		local trackH = 22
 		local ty = y + (h - trackH) / 2
 		el._track.Color = colorLerp(th.toggleOff, th.toggleOn, el._knobAnim)
 		el._track.Corner = 10
 		setRect(el._track, tx, ty, trackW, trackH)
 		local kx = tx + 4 + el._knobAnim * (trackW - trackH)
 		el._knob.Position = Vector2.new(kx + trackH / 2, ty + trackH / 2)
-		el._knob.Radius = 7
+		el._knob.Radius = 8
 		el._knob.Color = Color3.new(1, 1, 1)
 		el._knob.Visible = true
 
@@ -861,7 +859,7 @@ local function createSlider(tab, config)
 		_ownerTab = tab,
 		_visible = false,
 		_hoverT = 0,
-		Height = 44,
+		Height = 48,
 		Min = config.Min or 0,
 		Max = config.Max or 100,
 		Rounding = config.Rounding or 0,
@@ -936,25 +934,25 @@ local function createSlider(tab, config)
 			intRound(lerpN(th.element.G * 255, th.elementHover.G * 255, el._hoverT)),
 			intRound(lerpN(th.element.B * 255, th.elementHover.B * 255, el._hoverT))
 		)
-		el._bg.Corner = 6
+		el._bg.Corner = 10
 		setRect(el._bg, cx, y, cw, el.h)
-		setText(el._title, el.Title or "", cx + 12, y + 5, 13, th.text, false, true)
+		setText(el._title, el.Title or "", cx + 15, y + 7, 13, th.text, false, true)
 
 		local trackX = cx + 12
 		local trackW = math.max(cw - 24 - 62, 40)
-		local trackY = y + 27
+		local trackY = y + 31
 		local range = el.Max - el.Min
 		local frac = range > 0 and (el.Value - el.Min) / range or 0
 		frac = clampN(frac, 0, 1)
 
 		el._track.Color = th.sliderTrack
 		el._track.Corner = 3
-		setRect(el._track, trackX, trackY, trackW, 4)
+		setRect(el._track, trackX, trackY, trackW, 6)
 		el._fill.Color = th.sliderFill
 		el._fill.Corner = 3
-		setRect(el._fill, trackX, trackY, math.max(frac * trackW, 1), 4)
-		el._knob.Position = Vector2.new(trackX + frac * trackW, trackY + 2)
-		el._knob.Radius = 6
+		setRect(el._fill, trackX, trackY, math.max(frac * trackW, 1), 6)
+		el._knob.Position = Vector2.new(trackX + frac * trackW, trackY + 3)
+		el._knob.Radius = 7
 		el._knob.Color = Color3.new(1, 1, 1)
 		el._knob.Visible = true
 
@@ -1042,7 +1040,7 @@ local function createDropdown(tab, config)
 		_ownerTab = tab,
 		_visible = false,
 		_hoverT = 0,
-		Height = 34,
+		Height = 40,
 		Options = config.Options or config.Values or { "None" },
 		Multi = config.Multi == true,
 		AllowNull = config.AllowNull == true,
@@ -1233,14 +1231,14 @@ local function createDropdown(tab, config)
 			intRound(lerpN(th.element.G * 255, th.elementHover.G * 255, el._hoverT)),
 			intRound(lerpN(th.element.B * 255, th.elementHover.B * 255, el._hoverT))
 		)
-		el._bg.Corner = 6
+		el._bg.Corner = 10
 		setRect(el._bg, cx, y, cw, el.h)
-		setText(el._title, el.Title or "", cx + 12, y + (el.Description and 6 or 10), 13, th.text, false, true)
+		setText(el._title, el.Title or "", cx + 15, y + (el.Description and 7 or 12), 13, th.text, false, true)
 		if el.Description then
 			setText(el._descText or (function()
 				el._descText = newText(TEXT_FONT_BODY)
 				return el._descText
-			end)(), el.Description, cx + 12, y + 22, 11, th.textDim, false, true)
+			end)(), el.Description, cx + 15, y + 27, 11, th.textDim, false, true)
 		end
 		local dv = displayVal()
 		setText(el._valueText, dv, cx + cw - 12 - math.min(textW(dv, 12), cw - 80), y + 10, 12, th.textDim, false, true)
@@ -1264,7 +1262,7 @@ local function createDropdown(tab, config)
 
 		if el._open then
 			local opts = filteredOptions()
-			local itemH = 26
+			local itemH = 30
 			local visible = math.min(#opts, el.MaxItems)
 			local pw = math.min(cw, 260)
 			local ph = (el.Searchable and 26 or 0) + visible * itemH + 4
@@ -1276,7 +1274,7 @@ local function createDropdown(tab, config)
 			if py < 0 then py = y + el.h + 4 end
 
 			el._popupBg.Color = th.tab
-			el._popupBg.Corner = 8
+			el._popupBg.Corner = 12
 			el._popupBg.Outline = true
 			setRect(el._popupBg, px, py, pw, ph)
 			el._popupBg.Visible = true
@@ -1317,12 +1315,12 @@ local function createDropdown(tab, config)
 						slot.bg.Transparency = 1
 						slot.bg.Color = th.tab
 					end
-					slot.bg.Corner = 4
+					slot.bg.Corner = 8
 					setRect(slot.bg, px + 2, yyReal, pw - 4, itemH)
 					slot.bg.Visible = ohov or selected
 					setText(slot.text, el.Displayer(o), px + 10, yyReal + 6, 12, selected and th.accent or th.text, false, true)
 					if selected then
-						setText(slot.check, "x", px + pw - 16, yyReal + 5, 12, th.accent, true, true)
+						setText(slot.check, "✓", px + pw - 16, yyReal + 5, 12, th.accent, true, true)
 					else
 						slot.check.Visible = false
 					end
@@ -1446,7 +1444,7 @@ local function createColorpicker(tab, config)
 		_ownerTab = tab,
 		_visible = false,
 		_hoverT = 0,
-		Height = 34,
+		Height = 40,
 		Value = config.Default or Color3.new(1, 1, 1),
 		alpha = config.Transparency,
 		UpdateOnChange = config.UpdateOnChange == true,
@@ -1602,9 +1600,9 @@ local function createColorpicker(tab, config)
 			intRound(lerpN(th.element.G * 255, th.elementHover.G * 255, el._hoverT)),
 			intRound(lerpN(th.element.B * 255, th.elementHover.B * 255, el._hoverT))
 		)
-		el._bg.Corner = 6
+		el._bg.Corner = 10
 		setRect(el._bg, cx, y, cw, el.h)
-		setText(el._title, el.Title or "", cx + 12, y + 10, 13, th.text, false, true)
+		setText(el._title, el.Title or "", cx + 15, y + 12, 13, th.text, false, true)
 
 		el._swatch.Color = el.Value
 		el._swatch.Corner = 4
@@ -1633,7 +1631,7 @@ local function createColorpicker(tab, config)
 		end
 
 		if el._open then
-			local pw, ph = 220, 174
+			local pw, ph = 236, 190
 			local px = math.max(cx, 4)
 			if px + pw > state.viewW then px = cx end
 			local py = y + el.h + 4
@@ -1641,7 +1639,7 @@ local function createColorpicker(tab, config)
 			if py < 0 then py = y + el.h + 4 end
 
 			el._popBg.Color = th.tab
-			el._popBg.Corner = 8
+			el._popBg.Corner = 12
 			el._popBg.Outline = true
 			setRect(el._popBg, px, py, pw, ph)
 			el._popBg.Visible = true
@@ -1827,7 +1825,7 @@ local function createInput(tab, config)
 		_ownerTab = tab,
 		_visible = false,
 		_hoverT = 0,
-		Height = 44,
+		Height = 48,
 		Value = config.Default or "",
 		Placeholder = config.Placeholder or "",
 		Numeric = config.Numeric == true,
@@ -1904,16 +1902,16 @@ local function createInput(tab, config)
 			intRound(lerpN(th.element.G * 255, th.elementHover.G * 255, el._hoverT)),
 			intRound(lerpN(th.element.B * 255, th.elementHover.B * 255, el._hoverT))
 		)
-		el._bg.Corner = 6
+		el._bg.Corner = 10
 		setRect(el._bg, cx, y, cw, el.h)
-		setText(el._title, el.Title or "", cx + 12, y + 5, 13, th.text, false, true)
+		setText(el._title, el.Title or "", cx + 15, y + 7, 13, th.text, false, true)
 
 		local fx = cx + 12
-		local fy = y + 24
+		local fy = y + 27
 		local fw = cw - 24
-		local fh = 16
+		local fh = 20
 		el._field.Color = el._focused and th.accent2 or (hov and th.fieldHover or th.field)
-		el._field.Corner = 4
+		el._field.Corner = 8
 		setRect(el._field, fx, fy, fw, fh)
 		el._field.Visible = true
 
@@ -2108,7 +2106,7 @@ local function createKeybind(tab, config)
 		_ownerTab = tab,
 		_visible = false,
 		_hoverT = 0,
-		Height = 34,
+		Height = 40,
 		mode = config.Mode or "Toggle",
 		toggled = false,
 		_listening = false,
@@ -2195,16 +2193,16 @@ local function createKeybind(tab, config)
 			intRound(lerpN(th.element.G * 255, th.elementHover.G * 255, el._hoverT)),
 			intRound(lerpN(th.element.B * 255, th.elementHover.B * 255, el._hoverT))
 		)
-		el._bg.Corner = 6
+		el._bg.Corner = 10
 		setRect(el._bg, cx, y, cw, el.h)
-		setText(el._title, el.Title or "", cx + 12, y + 10, 13, th.text, false, true)
+		setText(el._title, el.Title or "", cx + 15, y + 12, 13, th.text, false, true)
 
-		local fx = cx + cw - 92
-		local fy = y + 8
-		local fw = 80
+		local fx = cx + cw - 104
+		local fy = y + 9
+		local fw = 92
 		el._field.Color = el._listening and th.accent or (hov and th.fieldHover or th.field)
-		el._field.Corner = 4
-		setRect(el._field, fx, fy, fw, 20)
+		el._field.Corner = 8
+		setRect(el._field, fx, fy, fw, 24)
 		el._field.Visible = true
 		setText(el._fieldText, keyLabel(), fx + fw / 2, fy + 3, 12, el._listening and th.titleBarText or th.text, true, true)
 
@@ -2400,6 +2398,25 @@ local function renderWindow(dt)
 	local viewW = state.viewW
 	local viewH = state.viewH
 
+	-- Layered soft shadow/glow for a premium floating-window effect.
+	chrome.shadow1.Color = Color3.new(0, 0, 0)
+	chrome.shadow1.Transparency = 0.82
+	chrome.shadow1.Corner = 18
+	setRect(chrome.shadow1, x + 10, y + 12, w, h)
+	chrome.shadow1.Visible = true
+
+	chrome.shadow2.Color = Color3.new(0, 0, 0)
+	chrome.shadow2.Transparency = 0.90
+	chrome.shadow2.Corner = 20
+	setRect(chrome.shadow2, x + 5, y + 7, w, h)
+	chrome.shadow2.Visible = true
+
+	chrome.shadow3.Color = th.accent
+	chrome.shadow3.Transparency = 0.96
+	chrome.shadow3.Corner = 20
+	setRect(chrome.shadow3, x + 2, y + 3, w, h)
+	chrome.shadow3.Visible = true
+
 	if win.maximized then
 		x, y, w, h = 1, 1, viewW - 2, viewH - 2
 	end
@@ -2415,24 +2432,24 @@ local function renderWindow(dt)
 	chrome.accent.Color = th.accentBar
 	chrome.accent.Corner = 2
 	setRect(chrome.accent, x + 2, y + 2, w - 4, ACCENT_H)
-	chrome.accent.Visible = not win.minimized
+	chrome.accent.Visible = true
 
 	chrome.title.Color = th.title
 	chrome.title.Transparency = visibleT(0.02)
-	chrome.title.Corner = 8
+	chrome.title.Corner = 12
 	setRect(chrome.title, x + 1, y + ACCENT_H + 1, w - 2, TITLE_H - 1)
 
-	local titleY = win.SubTitle and 6 or 13
-	setText(chrome.titleText, win.Title, x + 14, y + ACCENT_H + titleY, 15, th.titleBarText, false, true)
+	local titleY = win.SubTitle and 7 or 15
+	setText(chrome.titleText, win.Title, x + 18, y + ACCENT_H + titleY, 16, th.titleBarText, false, true)
 	if win.SubTitle then
-		setText(chrome.subText, win.SubTitle, x + 14, y + ACCENT_H + 24, 11, th.textDim, false, true)
+		setText(chrome.subText, win.SubTitle, x + 18, y + ACCENT_H + 29, 10, th.textDim, false, true)
 	else
 		chrome.subText.Visible = false
 	end
 
-	local btnW = 28
-	local btnH = TITLE_H - 10
-	local by = y + ACCENT_H + 5
+	local btnW = 32
+	local btnH = TITLE_H - 12
+	local by = y + ACCENT_H + 6
 	local bxClose = x + w - btnW - 6
 	local bxMax = bxClose - btnW - 4
 	local bxMin = bxMax - btnW - 4
@@ -2442,19 +2459,19 @@ local function renderWindow(dt)
 	local minHovD = hit(state.MouseX, state.MouseY, bxMin, by, btnW, btnH)
 
 	chrome.closeBg.Color = closeHovD and th.danger or th.title
-	chrome.closeBg.Corner = 4
+	chrome.closeBg.Corner = 8
 	setRect(chrome.closeBg, bxClose, by, btnW, btnH)
-	setText(chrome.closeText, "x", bxClose + btnW / 2, by + 4, 14, closeHovD and Color3.new(1, 1, 1) or th.textDim, true, true)
+	setText(chrome.closeText, "×", bxClose + btnW / 2, by + 3, 17, closeHovD and Color3.new(1, 1, 1) or th.textDim, true, true)
 
 	chrome.maxBg.Color = maxHovD and th.elementHover or th.title
-	chrome.maxBg.Corner = 4
+	chrome.maxBg.Corner = 8
 	setRect(chrome.maxBg, bxMax, by, btnW, btnH)
-	setText(chrome.maxText, win.maximized and "x" or "+", bxMax + btnW / 2, by + 4, 14, maxHovD and th.text or th.textDim, true, true)
+	setText(chrome.maxText, win.maximized and "❐" or "□", bxMax + btnW / 2, by + 4, 13, maxHovD and th.text or th.textDim, true, true)
 
 	chrome.minBg.Color = minHovD and th.elementHover or th.title
-	chrome.minBg.Corner = 4
+	chrome.minBg.Corner = 8
 	setRect(chrome.minBg, bxMin, by, btnW, btnH)
-	setText(chrome.minText, "-", bxMin + btnW / 2, by + 4, 14, minHovD and th.text or th.textDim, true, true)
+	setText(chrome.minText, "—", bxMin + btnW / 2, by + 3, 14, minHovD and th.text or th.textDim, true, true)
 
 	local titleDrag = hit(state.MouseX, state.MouseY, x + 2, y + ACCENT_H, w - 4, TITLE_H - ACCENT_H)
 		and not closeHovD and not maxHovD and not minHovD
@@ -2503,6 +2520,9 @@ local function renderWindow(dt)
 	end
 
 	if win.minimized then
+		chrome.shadow1.Visible = true
+		chrome.shadow2.Visible = true
+		chrome.shadow3.Visible = true
 		chrome.tabBg.Visible = false
 		chrome.contentBg.Visible = false
 		chrome.divider.Visible = false
@@ -2525,16 +2545,17 @@ local function renderWindow(dt)
 	local cx, cy, cw, ch = computeContentRect()
 
 	chrome.tabBg.Color = th.tab
-	chrome.tabBg.Corner = 6
+	chrome.tabBg.Corner = 10
 	setRect(chrome.tabBg, x + 1, y + TITLE_H + ACCENT_H, win.TabWidth - 1, ch)
 	chrome.tabBg.Visible = true
 
 	chrome.contentBg.Color = th.content
-	chrome.contentBg.Corner = 6
+	chrome.contentBg.Corner = 10
 	setRect(chrome.contentBg, cx, cy, cw, ch)
 	chrome.contentBg.Visible = true
 
 	chrome.divider.Color = th.border
+	chrome.divider.Transparency = visibleT(0.25)
 	setRect(chrome.divider, x + win.TabWidth - 1, y + TITLE_H + ACCENT_H, 1, ch)
 	chrome.divider.Visible = true
 
@@ -2545,11 +2566,11 @@ local function renderWindow(dt)
 	chrome.resizeGrip.Visible = not win.maximized and not win.minimized
 
 	for i, t in ipairs(win.Tabs) do
-		local bxx = x + 4
-		local bh = 30
-		local byy = y + TITLE_H + ACCENT_H + 6 + (i - 1) * (bh + 4)
+		local bxx = x + 8
+		local bh = 38
+		local byy = y + TITLE_H + ACCENT_H + 10 + (i - 1) * (bh + 6)
 		local active = t == win.SelectedTab
-		local hovT = hit(state.MouseX, state.MouseY, bxx, byy, win.TabWidth - 12, bh)
+		local hovT = hit(state.MouseX, state.MouseY, bxx, byy, win.TabWidth - 20, bh)
 		if not t.chrome then
 			t.chrome = {}
 			t.chrome.bg = newSquare()
@@ -2564,16 +2585,16 @@ local function renderWindow(dt)
 		else
 			tc.bg.Color = th.tab
 		end
-		tc.bg.Corner = 6
-		setRect(tc.bg, bxx, byy, win.TabWidth - 12, bh)
+		tc.bg.Corner = 10
+		setRect(tc.bg, bxx, byy, win.TabWidth - 20, bh)
 		tc.color.Color = th.tabActiveAccent
 		tc.color.Corner = 2
 		tc.color.Transparency = active and 0 or (hovT and 0 or 1)
-		setRect(tc.color, bxx, byy, 3, bh)
+		setRect(tc.color, bxx, byy + 7, 3, bh - 14)
 		tc.color.Visible = active or hovT
 
 		local label = (t.Icon and (t.Icon .. " ") or "") .. t.Title
-		setText(tc.text, label, bxx + (active and 13 or 15), byy + 8, 13,
+		setText(tc.text, label, bxx + 16, byy + 11, 13,
 			active and th.accent or (hovT and th.text or th.textDim), false, true)
 
 		if state.Click and hovT then
@@ -2609,13 +2630,13 @@ local function renderWindow(dt)
 		local thumbY = scrollY + (scrollH - thumbHpx) * (sel.scroll / maxScroll)
 
 		chrome.scrollBg.Color = th.elementPress
-		chrome.scrollBg.Corner = 2
+		chrome.scrollBg.Corner = 3
 		setRect(chrome.scrollBg, scrollX, scrollY, SCROLLBAR_W, scrollH)
 		chrome.scrollBg.Visible = true
 
 		local thumbHovD = hit(state.MouseX, state.MouseY, scrollX - 2, thumbY, SCROLLBAR_W + 4, thumbHpx)
 		chrome.scrollThumb.Color = thumbHovD and th.scrollHover or th.scroll
-		chrome.scrollThumb.Corner = 2
+		chrome.scrollThumb.Corner = 4
 		setRect(chrome.scrollThumb, scrollX, thumbY, SCROLLBAR_W, thumbHpx)
 		chrome.scrollThumb.Visible = true
 
@@ -2648,7 +2669,7 @@ local function renderWindow(dt)
 				if not sec.text then sec.text = newText(TEXT_FONT_TITLE) end
 				local sy = cy + sec.y - sel.scroll + 6
 				local headText = (sec.Title or ""):upper()
-				setText(sec.text, headText, elemX, sy, 11, th.textFaint, false, sy > cy - 20 and sy < cy + ch)
+				setText(sec.text, headText, elemX, sy, 11, th.accent, false, sy > cy - 20 and sy < cy + ch)
 			end
 		else
 			local el = node.element
@@ -2691,8 +2712,8 @@ local notifSlots = 5
 local notifPool = {}
 local notifActive = {}
 
-local NOTIF_W = 280
-local NOTIF_PAD = 10
+local NOTIF_W = 320
+local NOTIF_PAD = 16
 
 for i = 1, notifSlots do
 	notifPool[i] = {
@@ -2752,7 +2773,7 @@ local function renderNotifications(dt)
 		local xoff = (1 - appear) * 40
 
 		slot.bg.Color = th.title
-		slot.bg.Corner = 8
+		slot.bg.Corner = 14
 		slot.bg.Transparency = visibleT(0)
 		slot.bg.Outline = true
 		setRect(slot.bg, x + xoff, y, NOTIF_W, n.h)
@@ -2760,7 +2781,7 @@ local function renderNotifications(dt)
 
 		setText(slot.title, n.title, x + xoff + 12, y + 8, 13, th.text, false, true)
 		setText(slot.content, n.content, x + xoff + 12, y + 27, 11, th.textDim, false, true)
-		setText(slot.close, "x", x + xoff + NOTIF_W - 17, y + 8, 12, th.textFaint, true, true)
+		setText(slot.close, "×", x + xoff + NOTIF_W - 17, y + 8, 12, th.textFaint, true, true)
 
 		if state.Click and hit(state.MouseX, state.MouseY, x + xoff + NOTIF_W - 24, y + 6, 20, 18) then
 			n.removed = true
@@ -2858,7 +2879,7 @@ function Win:Dialog(config)
 
 	d._panel = newSquare()
 	d._panel.Color = t.content
-	d._panel.Corner = 10
+	d._panel.Corner = 14
 	d._panel.ZIndex = 901
 	d._panel.Visible = false
 
@@ -2899,7 +2920,7 @@ function Win:Dialog(config)
 		bxStart = bxStart - bw
 		local bbg = newSquare()
 		bbg.ZIndex = 903
-		bbg.Corner = 5
+		bbg.Corner = 8
 		bbg.Color = i == 1 and t.accent or t.elementHover
 		setRect(bbg, bxStart, by, bw, 22)
 		local btxt = newText(TEXT_FONT_BODY)
@@ -3070,6 +3091,9 @@ function Nebula:CreateWindow(config)
 	win.UpdateMinKey = config.MinimizeKey
 	win.MinimizeKey = type(config.MinimizeKey) == "number" and config.MinimizeKey or vkFromName(config.MinimizeKey) or EndC
 
+	chrome.shadow1 = newSquare()
+	chrome.shadow2 = newSquare()
+	chrome.shadow3 = newSquare()
 	chrome.bg = newSquare()
 	chrome.accent = newSquare()
 	chrome.title = newSquare()
