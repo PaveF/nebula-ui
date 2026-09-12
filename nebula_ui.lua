@@ -1,4 +1,4 @@
--- Nebula UI Library v2.0.0 — Full UI Remake
+-- Nebula UI Library v2.0.0
 -- Drawing-based menu framework for Matcha.
 -- loadstring(readfile("nebula_ui.lua"))()  ->  global 'Nebula'
 
@@ -23,8 +23,8 @@ local minimizedCallbacks = {}
 local maximizedCallbacks = {}
 local themeChangedCallbacks = {}
 
-local themeName = "Dark"
-local translucent = true
+local themeName = "Aurora"
+local translucent = false
 local loaded = false
 local unloaded = false
 local currentDialog = nil
@@ -37,140 +37,228 @@ local Themes = {}
 
 local function C3(r, g, b) return Color3.fromRGB(r, g, b) end
 
-Themes.Dark = {
-	name = "Dark",
-	accent = C3(139, 92, 246),
-	accent2 = C3(124, 77, 230),
-	text = C3(245, 245, 247),
-	textDim = C3(154, 158, 169),
-	textFaint = C3(101, 105, 116),
-	bg = C3(10, 11, 14),
-	title = C3(16, 17, 21),
-	content = C3(12, 13, 17),
-	tab = C3(15, 16, 20),
-	tabHover = C3(24, 25, 31),
-	tabActive = C3(29, 24, 41),
-	tabActiveAccent = C3(139, 92, 246),
-	element = C3(19, 20, 25),
-	elementHover = C3(24, 25, 31),
-	elementPress = C3(15, 16, 20),
-	field = C3(15, 16, 21),
-	fieldHover = C3(22, 23, 29),
-	border = C3(39, 41, 49),
-	toggleOff = C3(55, 58, 68),
-	toggleOn = C3(139, 92, 246),
-	sliderTrack = C3(49, 51, 61),
-	sliderFill = C3(139, 92, 246),
-	scroll = C3(74, 77, 88),
-	scrollHover = C3(101, 105, 116),
-	success = C3(86, 205, 142),
-	warning = C3(236, 183, 76),
-	danger = C3(231, 93, 102),
-	dialogOverlay = C3(0, 0, 0),
-	accentBar = C3(139, 92, 246),
-	titleBarText = C3(250, 250, 252),
+-- ============================================================
+-- Themes
+-- ============================================================
+
+Themes.Aurora = {
+	name = "Aurora",
+	accent = C3(140, 110, 255),
+	accent2 = C3(255, 90, 200),
+	accent3 = C3(70, 210, 255),
+	text = C3(250, 250, 255),
+	textDim = C3(168, 168, 200),
+	textFaint = C3(118, 118, 148),
+	bg = C3(12, 11, 19),
+	bgAlt = C3(16, 15, 25),
+	title = C3(18, 16, 28),
+	content = C3(12, 11, 19),
+	contentAlt = C3(16, 15, 25),
+	tab = C3(15, 14, 24),
+	tabHover = C3(24, 22, 38),
+	tabActive = C3(28, 24, 48),
+	tabActiveAccent = C3(140, 110, 255),
+	element = C3(21, 19, 33),
+	elementHover = C3(29, 27, 45),
+	elementPress = C3(16, 14, 26),
+	field = C3(17, 15, 27),
+	fieldHover = C3(24, 22, 38),
+	border = C3(40, 37, 58),
+	borderSoft = C3(33, 30, 48),
+	toggleOff = C3(55, 52, 76),
+	toggleOn = C3(140, 110, 255),
+	sliderTrack = C3(38, 35, 56),
+	sliderFill = C3(140, 110, 255),
+	sliderGlow = C3(140, 110, 255),
+	scroll = C3(60, 57, 82),
+	scrollHover = C3(84, 80, 112),
+	success = C3(95, 225, 150),
+	warning = C3(250, 195, 85),
+	danger = C3(250, 100, 110),
+	dialogOverlay = C3(5, 4, 9),
+	accentBar = C3(140, 110, 255),
+	titleBarText = C3(255, 255, 255),
+	titleBarSub = C3(150, 148, 175),
+	shadow = C3(0, 0, 0),
+	activeRing = C3(170, 145, 255),
+	checkmark = C3(255, 255, 255),
+	swatchBorder = C3(255, 255, 255),
 }
 
 Themes.Midnight = {
 	name = "Midnight",
-	accent = C3(56, 189, 248),
-	accent2 = C3(38, 165, 225),
-	text = C3(241, 247, 252),
-	textDim = C3(150, 164, 177),
-	textFaint = C3(92, 108, 122),
-	bg = C3(8, 12, 17),
-	title = C3(12, 18, 25),
-	content = C3(9, 13, 19),
-	tab = C3(11, 16, 23),
-	tabHover = C3(18, 26, 35),
-	tabActive = C3(18, 37, 51),
-	tabActiveAccent = C3(56, 189, 248),
-	element = C3(14, 20, 28),
-	elementHover = C3(19, 27, 36),
-	elementPress = C3(11, 16, 23),
-	field = C3(10, 15, 22),
-	fieldHover = C3(16, 23, 31),
-	border = C3(29, 40, 52),
-	toggleOff = C3(47, 61, 74),
-	toggleOn = C3(56, 189, 248),
-	sliderTrack = C3(39, 52, 66),
-	sliderFill = C3(56, 189, 248),
-	scroll = C3(60, 78, 95),
-	scrollHover = C3(82, 104, 124),
-	success = C3(82, 201, 144),
-	warning = C3(238, 183, 76),
-	danger = C3(228, 102, 111),
-	dialogOverlay = C3(0, 0, 0),
-	accentBar = C3(56, 189, 248),
-	titleBarText = C3(249, 252, 255),
-}
-
-Themes.Neon = {
-	name = "Neon",
-	accent = C3(45, 212, 191),
-	accent2 = C3(20, 184, 166),
-	text = C3(239, 250, 247),
-	textDim = C3(142, 167, 162),
-	textFaint = C3(87, 111, 106),
-	bg = C3(8, 14, 13),
-	title = C3(12, 21, 19),
-	content = C3(9, 16, 15),
-	tab = C3(11, 19, 18),
-	tabHover = C3(18, 29, 27),
-	tabActive = C3(12, 48, 44),
-	tabActiveAccent = C3(45, 212, 191),
-	element = C3(14, 23, 22),
-	elementHover = C3(19, 31, 29),
-	elementPress = C3(11, 19, 18),
-	field = C3(10, 18, 17),
-	fieldHover = C3(16, 27, 25),
-	border = C3(28, 47, 44),
-	toggleOff = C3(42, 63, 59),
-	toggleOn = C3(45, 212, 191),
-	sliderTrack = C3(37, 55, 52),
-	sliderFill = C3(45, 212, 191),
-	scroll = C3(55, 80, 74),
-	scrollHover = C3(75, 107, 99),
-	success = C3(77, 205, 142),
-	warning = C3(240, 193, 76),
-	danger = C3(229, 99, 109),
-	dialogOverlay = C3(0, 0, 0),
-	accentBar = C3(45, 212, 191),
-	titleBarText = C3(248, 255, 253),
-}
-
-Themes.Light = {
-	name = "Light",
-	accent = C3(99, 102, 241),
-	accent2 = C3(79, 70, 229),
-	text = C3(27, 29, 36),
-	textDim = C3(103, 108, 121),
-	textFaint = C3(151, 156, 169),
-	bg = C3(239, 241, 245),
-	title = C3(249, 250, 252),
-	content = C3(244, 245, 248),
-	tab = C3(237, 239, 243),
-	tabHover = C3(228, 231, 236),
-	tabActive = C3(228, 227, 252),
-	tabActiveAccent = C3(99, 102, 241),
-	element = C3(255, 255, 255),
-	elementHover = C3(249, 250, 252),
-	elementPress = C3(241, 243, 247),
-	field = C3(238, 240, 244),
-	fieldHover = C3(231, 233, 239),
-	border = C3(218, 221, 229),
-	toggleOff = C3(199, 203, 213),
-	toggleOn = C3(99, 102, 241),
-	sliderTrack = C3(210, 213, 222),
-	sliderFill = C3(99, 102, 241),
-	scroll = C3(192, 197, 208),
-	scrollHover = C3(166, 171, 185),
-	success = C3(53, 160, 103),
-	warning = C3(207, 153, 46),
-	danger = C3(218, 78, 90),
-	dialogOverlay = C3(0, 0, 0),
-	accentBar = C3(99, 102, 241),
+	accent = C3(90, 200, 255),
+	accent2 = C3(100, 130, 255),
+	accent3 = C3(80, 230, 255),
+	text = C3(245, 250, 255),
+	textDim = C3(158, 172, 192),
+	textFaint = C3(90, 106, 126),
+	bg = C3(7, 11, 20),
+	bgAlt = C3(10, 16, 28),
+	title = C3(11, 17, 29),
+	content = C3(7, 11, 20),
+	contentAlt = C3(10, 16, 28),
+	tab = C3(9, 15, 26),
+	tabHover = C3(15, 23, 38),
+	tabActive = C3(14, 38, 60),
+	tabActiveAccent = C3(90, 200, 255),
+	element = C3(14, 22, 36),
+	elementHover = C3(20, 31, 48),
+	elementPress = C3(11, 17, 28),
+	field = C3(10, 16, 27),
+	fieldHover = C3(16, 24, 38),
+	border = C3(29, 44, 62),
+	borderSoft = C3(22, 35, 50),
+	toggleOff = C3(42, 58, 78),
+	toggleOn = C3(90, 200, 255),
+	sliderTrack = C3(29, 44, 62),
+	sliderFill = C3(90, 200, 255),
+	sliderGlow = C3(90, 200, 255),
+	scroll = C3(46, 66, 88),
+	scrollHover = C3(68, 94, 122),
+	success = C3(90, 215, 160),
+	warning = C3(252, 190, 80),
+	danger = C3(240, 105, 118),
+	dialogOverlay = C3(4, 6, 10),
+	accentBar = C3(90, 200, 255),
 	titleBarText = C3(255, 255, 255),
+	titleBarSub = C3(135, 152, 172),
+	shadow = C3(0, 0, 0),
+	activeRing = C3(120, 215, 255),
+	checkmark = C3(255, 255, 255),
+	swatchBorder = C3(255, 255, 255),
+}
+
+Themes.Storm = {
+	name = "Storm",
+	accent = C3(0, 240, 170),
+	accent2 = C3(0, 190, 255),
+	accent3 = C3(120, 255, 200),
+	text = C3(246, 252, 250),
+	textDim = C3(148, 172, 164),
+	textFaint = C3(85, 108, 100),
+	bg = C3(7, 15, 13),
+	bgAlt = C3(10, 20, 18),
+	title = C3(11, 21, 18),
+	content = C3(7, 15, 13),
+	contentAlt = C3(10, 20, 18),
+	tab = C3(9, 18, 16),
+	tabHover = C3(17, 29, 25),
+	tabActive = C3(12, 58, 46),
+	tabActiveAccent = C3(0, 240, 170),
+	element = C3(16, 27, 24),
+	elementHover = C3(23, 36, 32),
+	elementPress = C3(12, 20, 18),
+	field = C3(11, 19, 17),
+	fieldHover = C3(18, 29, 26),
+	border = C3(34, 50, 44),
+	borderSoft = C3(27, 40, 36),
+	toggleOff = C3(46, 64, 58),
+	toggleOn = C3(0, 240, 170),
+	sliderTrack = C3(32, 48, 42),
+	sliderFill = C3(0, 240, 170),
+	sliderGlow = C3(0, 240, 170),
+	scroll = C3(50, 70, 62),
+	scrollHover = C3(72, 100, 88),
+	success = C3(90, 225, 155),
+	warning = C3(250, 215, 85),
+	danger = C3(245, 110, 118),
+	dialogOverlay = C3(4, 8, 6),
+	accentBar = C3(0, 240, 170),
+	titleBarText = C3(255, 255, 255),
+	titleBarSub = C3(125, 150, 142),
+	shadow = C3(0, 0, 0),
+	activeRing = C3(60, 255, 195),
+	checkmark = C3(10, 25, 20),
+	swatchBorder = C3(255, 255, 255),
+}
+
+Themes.Ember = {
+	name = "Ember",
+	accent = C3(255, 140, 70),
+	accent2 = C3(255, 80, 120),
+	accent3 = C3(255, 200, 90),
+	text = C3(252, 248, 244),
+	textDim = C3(180, 166, 160),
+	textFaint = C3(110, 100, 95),
+	bg = C3(18, 13, 12),
+	bgAlt = C3(22, 16, 15),
+	title = C3(26, 19, 17),
+	content = C3(18, 13, 12),
+	contentAlt = C3(22, 16, 15),
+	tab = C3(20, 15, 14),
+	tabHover = C3(31, 22, 19),
+	tabActive = C3(56, 28, 18),
+	tabActiveAccent = C3(255, 140, 70),
+	element = C3(28, 20, 18),
+	elementHover = C3(38, 27, 24),
+	elementPress = C3(22, 15, 14),
+	field = C3(23, 16, 15),
+	fieldHover = C3(32, 23, 20),
+	border = C3(50, 38, 34),
+	borderSoft = C3(42, 32, 29),
+	toggleOff = C3(70, 52, 47),
+	toggleOn = C3(255, 150, 80),
+	sliderTrack = C3(52, 40, 36),
+	sliderFill = C3(255, 150, 80),
+	sliderGlow = C3(255, 150, 80),
+	scroll = C3(78, 58, 52),
+	scrollHover = C3(106, 80, 72),
+	success = C3(120, 215, 130),
+	warning = C3(250, 205, 80),
+	danger = C3(250, 95, 105),
+	dialogOverlay = C3(9, 6, 5),
+	accentBar = C3(255, 150, 80),
+	titleBarText = C3(255, 255, 255),
+	titleBarSub = C3(160, 145, 138),
+	shadow = C3(0, 0, 0),
+	activeRing = C3(255, 170, 110),
+	checkmark = C3(255, 255, 255),
+	swatchBorder = C3(255, 255, 255),
+}
+
+Themes.Cloud = {
+	name = "Cloud",
+	accent = C3(110, 100, 255),
+	accent2 = C3(60, 150, 255),
+	accent3 = C3(180, 100, 255),
+	text = C3(34, 34, 46),
+	textDim = C3(118, 118, 140),
+	textFaint = C3(160, 160, 180),
+	bg = C3(244, 244, 250),
+	bgAlt = C3(238, 238, 246),
+	title = C3(236, 236, 244),
+	content = C3(244, 244, 250),
+	contentAlt = C3(238, 238, 246),
+	tab = C3(238, 238, 246),
+	tabHover = C3(228, 228, 240),
+	tabActive = C3(226, 222, 255),
+	tabActiveAccent = C3(110, 100, 255),
+	element = C3(255, 255, 255),
+	elementHover = C3(247, 247, 253),
+	elementPress = C3(234, 234, 244),
+	field = C3(234, 234, 244),
+	fieldHover = C3(226, 226, 238),
+	border = C3(222, 222, 236),
+	borderSoft = C3(230, 230, 242),
+	toggleOff = C3(200, 200, 218),
+	toggleOn = C3(110, 100, 255),
+	sliderTrack = C3(214, 214, 230),
+	sliderFill = C3(110, 100, 255),
+	sliderGlow = C3(110, 100, 255),
+	scroll = C3(195, 195, 214),
+	scrollHover = C3(168, 168, 192),
+	success = C3(60, 180, 110),
+	warning = C3(220, 165, 40),
+	danger = C3(228, 82, 94),
+	dialogOverlay = C3(20, 20, 40),
+	accentBar = C3(110, 100, 255),
+	titleBarText = C3(255, 255, 255),
+	titleBarSub = C3(148, 140, 200),
+	shadow = C3(120, 110, 170),
+	activeRing = C3(110, 100, 255),
+	checkmark = C3(255, 255, 255),
+	swatchBorder = C3(255, 255, 255),
 }
 
 for name in pairs(Themes) do
@@ -341,6 +429,13 @@ local function ease(v, target, dt, speed)
 	return lerpN(v, target, 1 - math.pow(2, -dt * speed))
 end
 
+local function easeOutBack(t)
+	t = clampN(t, 0, 1)
+	local c1 = 1.70158
+	local c3 = c1 + 1
+	return 1 + c3 * math.pow(t - 1, 3) + c1 * math.pow(t - 1, 2)
+end
+
 local function hit(mx, my, x, y, w, h)
 	return mx >= x and mx <= x + w and my >= y and my <= y + h
 end
@@ -394,6 +489,10 @@ local function colorFromHex(hexStr)
 	return color, alpha
 end
 
+-- ============================================================
+-- Drawing factories
+-- ============================================================
+
 local function newSquare()
 	local d = Drawing.new("Square")
 	d.Filled = true
@@ -413,7 +512,7 @@ local function newCircle()
 	d.Transparency = 0
 	d.Visible = false
 	d.ZIndex = 1
-	d.NumSides = 24
+	d.NumSides = 36
 	return d
 end
 
@@ -487,9 +586,31 @@ local function setText(d, text, x, y, size, color, center, visible)
 	d.Visible = visible
 end
 
+local function setGradientText(dA, dB, text, x, y, size, colA, colB, center, visible)
+	text = text or ""
+	if text == "" then
+		dA.Visible = false
+		dB.Visible = false
+		return
+	end
+	local total = textW(text, size)
+	local cx = x
+	if center then cx = x - total / 2 end
+	local split = math.max(math.floor(#text * 0.55), 1)
+	local partA = text:sub(1, split)
+	local partB = text:sub(split + 1)
+	setText(dA, partA, cx, y, size, colA, false, visible)
+	if #partB > 0 then
+		setText(dB, partB, cx + textW(partA, size), y, size, colB, false, visible)
+	else
+		dB.Visible = false
+	end
+end
+
 local function visibleT(base)
 	if not translucent then return 0 end
-	return base or 0.02
+	if base == nil then return 0.02 end
+	return base
 end
 
 -- element registry for outside-click handling on popups
@@ -593,12 +714,14 @@ function BaseHandle:Destroy()
 	end
 end
 
-local TITLE_H = 46
-local ACCENT_H = 1
-local CONTENT_HEADER_H = 54
-local CONTENT_PAD_X = 18
+local TITLE_H = 44
+local ACCENT_H = 3
+local CONTENT_PAD_X = 14
 local ELEMENT_GAP = 6
-local SCROLLBAR_W = 3
+local SCROLLBAR_W = 4
+local CORNER_WIN = 14
+local CORNER_EL = 8
+local CORNER_SM = 5
 
 local chrome = {}
 
@@ -611,14 +734,14 @@ local function layoutTab(tab)
 				sec.h = 0
 				sec.y = 0
 			else
-				sec.h = 24
-				y = y + 12
+				sec.h = 32
+				y = y + 18
 				sec.y = y
 				y = y + sec.h
 			end
 		else
 			local el = node.element
-			local h = el.Height or 34
+			local h = el.Height or 36
 			if el.HeightFn then h = el:HeightFn() end
 			el.y = y
 			el.h = h
@@ -650,6 +773,8 @@ local function removeNode(tab, element)
 	end
 end
 
+-- shared: hover-accent slide bar used by buttons and rows
+
 -- ============================================================
 -- Button
 -- ============================================================
@@ -661,28 +786,39 @@ local function createButton(tab, config)
 		Id = config.Id or config.Flag,
 		Title = config.Title,
 		Description = config.Description,
+		Style = config.Style or "ghost",
 		Callback = config.Callback,
 		_ownerTab = tab,
-		Height = config.Description and 48 or 40,
+		Height = config.Description and 48 or 38,
 		_hoverT = 0,
+		_pressT = 0,
 		_visible = false,
 		Value = nil,
 	}, BaseHandle)
 
 	el._bg = newSquare()
+	el._glow = newSquare()
+	el._bar = newSquare()
 	el._title = newText(TEXT_FONT_BODY)
 	el._desc = newText(TEXT_FONT_BODY)
+	el._arrow = newText(TEXT_FONT_BODY)
 
 	function el:_hideAll()
 		el._bg.Visible = false
+		el._glow.Visible = false
+		el._bar.Visible = false
 		el._title.Visible = false
 		el._desc.Visible = false
+		el._arrow.Visible = false
 	end
 
 	function el:_destroyDrawings()
 		el._bg:Remove()
+		el._glow:Remove()
+		el._bar:Remove()
 		el._title:Remove()
 		el._desc:Remove()
+		el._arrow:Remove()
 	end
 
 	function el:_update(dt, cx, cy, cw, ch, scroll)
@@ -694,31 +830,72 @@ local function createButton(tab, config)
 			return
 		end
 		local hov = hit(state.MouseX, state.MouseY, cx, y, cw, el.h)
-		el._hoverT = ease(el._hoverT, hov and 1 or 0, dt, 12)
 		local press = hov and state.Lmb
-		local base = th.element
-		local hover = th.elementHover
-		local bg = Color3.fromRGB(
-			intRound(lerpN(base.R * 255, hover.R * 255, el._hoverT)),
-			intRound(lerpN(base.G * 255, hover.G * 255, el._hoverT)),
-			intRound(lerpN(base.B * 255, hover.B * 255, el._hoverT))
-		)
-		if press then
-			bg = Color3.fromRGB(
-				intRound(bg.R * 255 - 12),
-				intRound(bg.G * 255 - 12),
-				intRound(bg.B * 255 - 12)
+		el._hoverT = ease(el._hoverT, hov and 1 or 0, dt, 16)
+		el._pressT = ease(el._pressT, press and 1 or 0, dt, 20)
+
+		local accent = el.Style == "accent"
+		local base
+		if accent then
+			base = colorLerp(th.accent, th.accent2, 0.15)
+			base = Color3.fromRGB(
+				clampN(intRound(base.R * 255 - el._pressT * 20), 0, 255),
+				clampN(intRound(base.G * 255 - el._pressT * 20), 0, 255),
+				clampN(intRound(base.B * 255 - el._pressT * 20), 0, 255)
+			)
+		else
+			base = colorLerp(th.element, th.elementHover, el._hoverT)
+			base = Color3.fromRGB(
+				clampN(intRound(base.R * 255 - el._pressT * 14), 0, 255),
+				clampN(intRound(base.G * 255 - el._pressT * 14), 0, 255),
+				clampN(intRound(base.B * 255 - el._pressT * 14), 0, 255)
 			)
 		end
-		el._bg.Color = bg
-		el._bg.Corner = 5
-		el._bg.Outline = true
-		el._bg.Transparency = visibleT(0)
-		setRect(el._bg, cx, y, cw, el.h)
-		setText(el._title, el.Title or "Button", cx + 16, y + (el.Description and 7 or 12), 13, th.text, false, true)
-		if el.Description then
-			setText(el._desc, el.Description, cx + 16, y + 29, 11, th.textDim, false, true)
+
+		-- solid ring: accent buttons keep a hover halo, ghost buttons get an always-visible border
+		local glowA = el._hoverT * 0.25
+		if accent then
+			el._glow.Color = th.accent
+			el._glow.Transparency = visibleT(glowA + 0.3)
+			el._glow.Visible = hov or el._hoverT > 0.01
+		else
+			el._glow.Color = hov and th.accent or th.borderSoft
+			el._glow.Transparency = visibleT(0)
+			el._glow.Visible = true
 		end
+		el._glow.Corner = CORNER_EL + 2
+		el._glow.Outline = true
+		el._glow.Filled = false
+		el._glow.Thickness = 1
+		setRect(el._glow, cx - 1, y - 1, cw + 2, el.h + 2)
+
+		el._bg.Color = base
+		el._bg.Corner = CORNER_EL
+		el._bg.Transparency = visibleT(0)
+		el._bg.Outline = accent
+		el._bg.Thickness = accent and 1 or 0
+		setRect(el._bg, cx, y, cw, el.h)
+
+		-- left accent slide bar on hover
+		if not accent then
+			local barW = 3 + el._hoverT * 3
+			el._bar.Color = colorLerp(th.accent, th.accent2, el._hoverT)
+			el._bar.Corner = 2
+			setRect(el._bar, cx, y, barW, el.h)
+			el._bar.Visible = el._hoverT > 0.01
+		else
+			el._bar.Visible = false
+		end
+
+		local titleColor = accent and th.titleBarText or th.text
+		setText(el._title, el.Title or "Button", cx + 14 + el._hoverT * 2, y + (el.Description and 6 or 12), 13, titleColor, false, true)
+		if el.Description then
+			setText(el._desc, el.Description, cx + 14 + el._hoverT * 2, y + 25, 11, th.textDim, false, true)
+		end
+		setText(el._arrow, ">", cx + cw - 16, y + (el.Description and 15 or 12), 12, accent and th.titleBarText or th.textFaint, true, true)
+		if not hov then el._arrow.Transparency = 1 end
+		el._arrow.Visible = false
+
 		if state.Click and hov then
 			safeCallback(el.Callback)
 		end
@@ -745,11 +922,12 @@ local function createToggle(tab, config)
 		_visible = false,
 		_hoverT = 0,
 		_knobAnim = 0,
+		_glowPulse = 0,
 		Value = config.Default == true,
 	}, BaseHandle)
 
 	el.HeightFn = function()
-		return el.Description and 48 or 40
+		return el.Description and 48 or 38
 	end
 
 	local kbConfig = config.Keybind
@@ -767,10 +945,14 @@ local function createToggle(tab, config)
 	el._knobAnim = el.Value and 1 or 0
 
 	el._bg = newSquare()
+	el._leftBar = newSquare()
 	el._title = newText(TEXT_FONT_BODY)
 	el._desc = newText(TEXT_FONT_BODY)
+	el._keyHint = newText(TEXT_FONT_BODY)
 	el._track = newSquare()
+	el._trackFill = newSquare()
 	el._knob = newCircle()
+	el._knobRing = newCircle()
 
 	function el:SetValue(v, fire)
 		v = v == true
@@ -786,18 +968,26 @@ local function createToggle(tab, config)
 
 	function el:_hideAll()
 		el._bg.Visible = false
+		el._leftBar.Visible = false
 		el._title.Visible = false
 		el._desc.Visible = false
+		el._keyHint.Visible = false
 		el._track.Visible = false
+		el._trackFill.Visible = false
 		el._knob.Visible = false
+		el._knobRing.Visible = false
 	end
 
 	function el:_destroyDrawings()
 		el._bg:Remove()
+		el._leftBar:Remove()
 		el._title:Remove()
 		el._desc:Remove()
+		el._keyHint:Remove()
 		el._track:Remove()
+		el._trackFill:Remove()
 		el._knob:Remove()
+		el._knobRing:Remove()
 	end
 
 	function el:_update(dt, cx, cy, cw, ch, scroll)
@@ -810,33 +1000,73 @@ local function createToggle(tab, config)
 			return
 		end
 		local hov = hit(state.MouseX, state.MouseY, cx, y, cw, h)
-		el._hoverT = ease(el._hoverT, hov and 1 or 0, dt, 12)
-		el._knobAnim = ease(el._knobAnim, el.Value and 1 or 0, dt, 14)
+		el._hoverT = ease(el._hoverT, hov and 1 or 0, dt, 14)
+		el._knobAnim = ease(el._knobAnim, el.Value and 1 or 0, dt, 16)
+		local on = el.Value
 
-		local hover = th.elementHover
-		el._bg.Color = Color3.fromRGB(
-			intRound(lerpN(th.element.R * 255, hover.R * 255, el._hoverT)),
-			intRound(lerpN(th.element.G * 255, hover.G * 255, el._hoverT)),
-			intRound(lerpN(th.element.B * 255, hover.B * 255, el._hoverT))
-		)
-		el._bg.Corner = 6
+		local base = colorLerp(th.element, th.elementHover, el._hoverT)
+		el._bg.Color = base
+		el._bg.Corner = CORNER_EL
+		el._bg.Outline = hov
+		el._bg.Thickness = hov and 1 or 0
 		setRect(el._bg, cx, y, cw, h)
-		setText(el._title, el.Title or "", cx + 12, y + (el.Description and 6 or 10), 13, th.text, false, true)
+
+		-- left accent state bar
+		local barW = math.max(3, 4 * el._knobAnim)
+		el._leftBar.Color = on and colorLerp(th.accent, th.accent2, 0.2) or th.border
+		el._leftBar.Corner = 2
+		setRect(el._leftBar, cx, y + 4, barW * math.max(el._knobAnim, hov and 0.5 or 0), h - 8)
+		el._leftBar.Visible = el._knobAnim > 0.02 or hov
+
+		setText(el._title, el.Title or "", cx + 20, y + (el.Description and 6 or 11), 13, on and th.text or th.text, false, true)
 		if el.Description then
-			setText(el._desc, el.Description, cx + 16, y + 29, 11, th.textDim, false, true)
+			setText(el._desc, el.Description, cx + 20, y + 24, 11, th.textDim, false, true)
 		end
 
-		local tx = cx + cw - 54
+		if el.Keybind then
+			setText(el._keyHint, "[" .. tostring(el.Keybind) .. "]", cx + 20 + textW(el.Description and (el.Description .. "  ") or "", 0) + (el.Description and textW(el.Title or "", 13) + textW(el.Description, 11) + 8 or textW(el.Title or "", 13)) + 8, y + (el.Description and 6 or 11), 11, th.textFaint, false, true)
+		else
+			el._keyHint.Visible = false
+		end
+
+		-- toggle switch
+		local tx = cx + cw - 50
 		local trackW = 38
 		local trackH = 20
 		local ty = y + (h - trackH) / 2
-		el._track.Color = colorLerp(th.toggleOff, th.toggleOn, el._knobAnim)
-		el._track.Corner = 10
-		setRect(el._track, tx, ty, trackW, trackH)
-		local kx = tx + 4 + el._knobAnim * (trackW - trackH)
-		el._knob.Position = Vector2.new(kx + trackH / 2, ty + trackH / 2)
-		el._knob.Radius = 8
-		el._knob.Color = Color3.new(1, 1, 1)
+		local radius = trackH / 2
+		local centerX = tx + radius
+		local anim = easeOutBack(el._knobAnim)
+
+		-- glow halo when on
+		local glowA = on and (0.30 + 0.10 * math.sin(tick() * 4) * 0 + 0.0) or 0
+		el._trackFill.Color = colorLerp(th.toggleOff, th.accent, el._knobAnim)
+		el._trackFill.Corner = radius
+		el._trackFill.Outline = on and el._knobAnim > 0.5
+		el._trackFill.Thickness = 1
+		setRect(el._trackFill, tx, ty, trackW, trackH)
+		el._trackFill.Visible = true
+
+		-- subtle inner shadow strip
+		el._track.Color = th.shadow
+		el._track.Transparency = 0.55
+		setRect(el._track, tx, ty + trackH * 0.55, trackW, trackH * 0.4)
+		el._track.Corner = radius
+		el._track.Visible = true
+
+		local knobR = 7
+		local kx = tx + radius + (trackW - trackH) * anim
+		el._knobRing.Color = th.swatchBorder
+		el._knobRing.Radius = knobR + 3
+		el._knobRing.Outline = true
+		el._knobRing.Filled = false
+		el._knobRing.Thickness = on and 1 or 0
+		el._knobRing.Position = Vector2.new(kx, ty + radius)
+		el._knobRing.Visible = on and el._knobAnim > 0.5
+
+		el._knob.Position = Vector2.new(kx, ty + radius)
+		el._knob.Radius = knobR
+		el._knob.Color = on and Color3.new(1, 1, 1) or th.scrollHover
 		el._knob.Visible = true
 
 		if state.Click and hov then
@@ -864,10 +1094,11 @@ local function createSlider(tab, config)
 		_ownerTab = tab,
 		_visible = false,
 		_hoverT = 0,
-		Height = 50,
+		Height = 48,
 		Min = config.Min or 0,
 		Max = config.Max or 100,
 		Rounding = config.Rounding or 0,
+		Suffix = config.Suffix or "",
 		_dragging = false,
 		_editValue = false,
 		_editBuf = "",
@@ -877,11 +1108,15 @@ local function createSlider(tab, config)
 	if el.Value == nil then el.Value = el.Min end
 
 	el._bg = newSquare()
+	el._bar = newSquare()
 	el._title = newText(TEXT_FONT_BODY)
 	el._track = newSquare()
+	el._trackBorder = newSquare()
 	el._fill = newSquare()
+	el._fillGlow = newSquare()
 	el._knob = newCircle()
-	el._value = newText(TEXT_FONT_BODY)
+	el._knobRing = newCircle()
+	el._value = newText(TEXT_FONT_TITLE)
 	el._editBg = newSquare()
 	el._editText = newText(TEXT_FONT_BODY)
 
@@ -904,10 +1139,14 @@ local function createSlider(tab, config)
 
 	function el:_hideAll()
 		el._bg.Visible = false
+		el._bar.Visible = false
 		el._title.Visible = false
 		el._track.Visible = false
+		el._trackBorder.Visible = false
 		el._fill.Visible = false
+		el._fillGlow.Visible = false
 		el._knob.Visible = false
+		el._knobRing.Visible = false
 		el._value.Visible = false
 		el._editBg.Visible = false
 		el._editText.Visible = false
@@ -915,10 +1154,14 @@ local function createSlider(tab, config)
 
 	function el:_destroyDrawings()
 		el._bg:Remove()
+		el._bar:Remove()
 		el._title:Remove()
 		el._track:Remove()
+		el._trackBorder:Remove()
 		el._fill:Remove()
+		el._fillGlow:Remove()
 		el._knob:Remove()
+		el._knobRing:Remove()
 		el._value:Remove()
 		el._editBg:Remove()
 		el._editText:Remove()
@@ -933,49 +1176,89 @@ local function createSlider(tab, config)
 			return
 		end
 		local hov = hit(state.MouseX, state.MouseY, cx, y, cw, el.h)
-		el._hoverT = ease(el._hoverT, hov and 1 or 0, dt, 12)
-		el._bg.Color = Color3.fromRGB(
-			intRound(lerpN(th.element.R * 255, th.elementHover.R * 255, el._hoverT)),
-			intRound(lerpN(th.element.G * 255, th.elementHover.G * 255, el._hoverT)),
-			intRound(lerpN(th.element.B * 255, th.elementHover.B * 255, el._hoverT))
-		)
-		el._bg.Corner = 5
-		el._bg.Outline = true
-		el._bg.Transparency = visibleT(0)
-		setRect(el._bg, cx, y, cw, el.h)
-		setText(el._title, el.Title or "", cx + 16, y + 8, 13, th.text, false, true)
+		el._hoverT = ease(el._hoverT, hov and 1 or 0, dt, 14)
 
-		local trackX = cx + 12
-		local trackW = math.max(cw - 32 - 68, 40)
-		local trackY = y + 31
+		local base = colorLerp(th.element, th.elementHover, el._hoverT)
+		el._bg.Color = base
+		el._bg.Corner = CORNER_EL
+		el._bg.Outline = hov or el._dragging
+		el._bg.Thickness = (hov or el._dragging) and 1 or 0
+		el._bg.Color = base
+		setRect(el._bg, cx, y, cw, el.h)
+
+		el._bar.Color = colorLerp(th.accent, th.accent2, 0.2)
+		el._bar.Corner = 2
+		setRect(el._bar, cx, y + 3, 3, el.h - 6)
+		el._bar.Visible = true
+
+		setText(el._title, el.Title or "", cx + 14, y + 6, 13, th.text, false, true)
+
+		local trackX = cx + 14
+		local trackW = math.max(cw - 28 - 84, 40)
+		local trackY = y + 28
+		local trackH = 6
 		local range = el.Max - el.Min
 		local frac = range > 0 and (el.Value - el.Min) / range or 0
 		frac = clampN(frac, 0, 1)
 
+		el._trackBorder.Color = th.border
+		el._trackBorder.Corner = trackH / 2
+		el._trackBorder.Outline = true
+		el._trackBorder.Thickness = 1
+		el._trackBorder.Filled = true
+		setRect(el._trackBorder, trackX - 1, trackY - 1, trackW + 2, trackH + 2)
+		el._trackBorder.Visible = true
+
 		el._track.Color = th.sliderTrack
-		el._track.Corner = 3
-		setRect(el._track, trackX, trackY, trackW, 5)
-		el._fill.Color = th.sliderFill
-		el._fill.Corner = 3
-		setRect(el._fill, trackX, trackY, math.max(frac * trackW, 1), 5)
-		el._knob.Position = Vector2.new(trackX + frac * trackW, trackY + 2.5)
-		el._knob.Radius = 7
+		el._track.Corner = trackH / 2
+		setRect(el._track, trackX, trackY, trackW, trackH)
+		el._track.Visible = true
+
+		local fillW = math.max(frac * trackW, 2)
+		local fillColor = colorLerp(th.accent, th.accent2, frac * 0.5)
+		el._fill.Color = fillColor
+		el._fill.Corner = trackH / 2
+		setRect(el._fill, trackX, trackY, fillW, trackH)
+		el._fill.Visible = true
+
+		-- glow under the filled portion
+		local ga = 0.35 + el._hoverT * 0.15
+		el._fillGlow.Color = fillColor
+		el._fillGlow.Transparency = visibleT(ga)
+		el._fillGlow.Corner = 2
+		setRect(el._fillGlow, trackX, trackY + trackH + 1, fillW, 2)
+		el._fillGlow.Visible = fillW > 2
+
+		local playing = el._dragging or hov
+		local knobX = trackX + frac * trackW
+		el._knobRing.Color = fillColor
+		el._knobRing.Radius = playing and 9 or 7
+		el._knobRing.Outline = true
+		el._knobRing.Filled = false
+		el._knobRing.Thickness = 1
+		el._knobRing.Position = Vector2.new(knobX, trackY + trackH / 2)
+		el._knobRing.Visible = playing
+
+		el._knob.Position = Vector2.new(knobX, trackY + trackH / 2)
+		el._knob.Radius = 5
 		el._knob.Color = Color3.new(1, 1, 1)
 		el._knob.Visible = true
 
-		local vt = fmtNum(el.Value, el.Rounding)
+		local vt = fmtNum(el.Value, el.Rounding) .. el.Suffix
 		if el._editValue then
 			el._editBg.Color = th.fieldHover
-			el._editBg.Corner = 4
-			setRect(el._editBg, cx + cw - 70, y + 3, 58, 18)
+			el._editBg.Corner = CORNER_SM
+			el._editBg.Outline = true
+			el._editBg.Thickness = 1
+			setRect(el._editBg, cx + cw - 78, y + 5, 64, 20)
 			el._editText.Color = th.text
-			setText(el._editText, el._editBuf, cx + cw - 70, y + 4, 12, th.text, false, true)
+			setText(el._editText, el._editBuf, cx + cw - 78 + 6, y + 7, 12, th.text, false, true)
 		else
-			setText(el._value, vt, cx + cw - 12 - textW(vt, 13), y + 6, 13, th.accent, false, true)
+			setText(el._value, vt, cx + cw - 16 - textW(vt, 13), y + 7, 13, th.text, false, true)
 		end
 
-		local onTrack = hit(state.MouseX, state.MouseY, trackX, trackY - 4, trackW, 12)
-		local onValue = not el._editValue and hit(state.MouseX, state.MouseY, cx + cw - 70, y + 3, 62, 20)
+		local onTrack = hit(state.MouseX, state.MouseY, trackX, trackY - 8, trackW, trackH + 16)
+		local onValue = not el._editValue and hit(state.MouseX, state.MouseY, cx + cw - 82, y + 3, 68, 24)
 
 		if state.Click and onValue then
 			el._editValue = true
@@ -989,7 +1272,7 @@ local function createSlider(tab, config)
 			end
 		end
 		if el._editValue then
-			if keyJustPressed(EnterC) then
+			if keyJustPressed(0x0D) then
 				local n = tonumber(el._editBuf)
 				if n then el:SetValue(n, true) end
 				el._editValue = false
@@ -1009,8 +1292,6 @@ local function createSlider(tab, config)
 			end
 		end
 
-		if state.Lmb and not state.Click and el._dragging then
-		end
 		if el._dragging or (state.Click and onTrack) then
 			el._dragging = true
 			local mxLocal = clampN(state.MouseX - trackX, 0, trackW)
@@ -1047,7 +1328,7 @@ local function createDropdown(tab, config)
 		_ownerTab = tab,
 		_visible = false,
 		_hoverT = 0,
-		Height = 40,
+		Height = 38,
 		Options = config.Options or config.Values or { "None" },
 		Multi = config.Multi == true,
 		AllowNull = config.AllowNull == true,
@@ -1082,11 +1363,14 @@ local function createDropdown(tab, config)
 	end
 
 	el._bg = newSquare()
+	el._bar = newSquare()
 	el._title = newText(TEXT_FONT_BODY)
-	el._valueText = newText(TEXT_FONT_BODY)
+	el._valueText = newText(TEXT_FONT_TITLE)
 	el._chevron = newText(TEXT_FONT_BODY)
 
+	el._popupShadow = newSquare()
 	el._popupBg = newSquare()
+	el._popupBorder = newSquare()
 	el._popupScroll = newSquare()
 	el._popupScrollThumb = newSquare()
 	el._searchBg = newSquare()
@@ -1158,6 +1442,7 @@ local function createDropdown(tab, config)
 
 	function el:_hideAll()
 		el._bg.Visible = false
+		el._bar.Visible = false
 		el._title.Visible = false
 		el._valueText.Visible = false
 		el._chevron.Visible = false
@@ -1165,7 +1450,9 @@ local function createDropdown(tab, config)
 	end
 
 	function el:_closePopup()
+		el._popupShadow.Visible = false
 		el._popupBg.Visible = false
+		el._popupBorder.Visible = false
 		el._popupScroll.Visible = false
 		el._popupScrollThumb.Visible = false
 		el._searchBg.Visible = false
@@ -1185,10 +1472,13 @@ local function createDropdown(tab, config)
 	function el:_destroyDrawings()
 		el:_closePopup()
 		el._bg:Remove()
+		el._bar:Remove()
 		el._title:Remove()
 		el._valueText:Remove()
 		el._chevron:Remove()
+		el._popupShadow:Remove()
 		el._popupBg:Remove()
+		el._popupBorder:Remove()
 		el._popupScroll:Remove()
 		el._popupScrollThumb:Remove()
 		el._searchBg:Remove()
@@ -1232,26 +1522,35 @@ local function createDropdown(tab, config)
 			return
 		end
 		local hov = hit(state.MouseX, state.MouseY, cx, y, cw, el.h)
-		el._hoverT = ease(el._hoverT, (hov or el._open) and 1 or 0, dt, 12)
-		el._bg.Color = Color3.fromRGB(
-			intRound(lerpN(th.element.R * 255, th.elementHover.R * 255, el._hoverT)),
-			intRound(lerpN(th.element.G * 255, th.elementHover.G * 255, el._hoverT)),
-			intRound(lerpN(th.element.B * 255, th.elementHover.B * 255, el._hoverT))
-		)
-		el._bg.Corner = 5
-		el._bg.Outline = true
-		el._bg.Transparency = visibleT(0)
+		el._hoverT = ease(el._hoverT, (hov or el._open) and 1 or 0, dt, 14)
+
+		local base = colorLerp(th.element, th.elementHover, el._hoverT)
+		el._bg.Color = base
+		el._bg.Corner = CORNER_EL
+		el._bg.Outline = hov or el._open
+		el._bg.Thickness = (hov or el._open) and 1 or 0
 		setRect(el._bg, cx, y, cw, el.h)
-		setText(el._title, el.Title or "", cx + 12, y + (el.Description and 6 or 10), 13, th.text, false, true)
+
+		el._bar.Color = el._open and colorLerp(th.accent, th.accent2, 0.2) or (el._hoverT > 0.01 and th.accent or th.border)
+		el._bar.Corner = 2
+		setRect(el._bar, cx, y + 4, 3, el.h - 8)
+		el._bar.Visible = true
+
+		setText(el._title, el.Title or "", cx + 14, y + (el.Description and 5 or 12), 13, th.text, false, true)
 		if el.Description then
 			setText(el._descText or (function()
 				el._descText = newText(TEXT_FONT_BODY)
 				return el._descText
-			end)(), el.Description, cx + 16, y + 29, 11, th.textDim, false, true)
+			end)(), el.Description, cx + 14, y + 24, 11, th.textDim, false, true)
 		end
 		local dv = displayVal()
-		setText(el._valueText, dv, cx + cw - 12 - math.min(textW(dv, 12), cw - 80), y + 10, 12, th.textDim, false, true)
-		setText(el._chevron, el._open and "/\\" or "\\/", cx + cw - 22, y + 10, 11, th.textFaint, true, true)
+		local dvw = math.min(textW(dv, 12), cw - 100)
+		setText(el._valueText, dv, cx + cw - 12 - dvw, y + 12, 12, el.Value == nil or (el.Multi and next(el.Value) == nil) and th.textFaint or th.text, false, true)
+
+		-- chevron draw: two short lines
+		local chevX = cx + cw - 18
+		local chevY = y + (el.h - 4) / 2
+		setText(el._chevron, el._open and "/\\" or "\\/", chevX, y + 12, 11, el._open and th.accent or th.textFaint, true, true)
 
 		if state.Click and hov then
 			if el._open then
@@ -1273,30 +1572,49 @@ local function createDropdown(tab, config)
 			local opts = filteredOptions()
 			local itemH = 28
 			local visible = math.min(#opts, el.MaxItems)
-			local pw = math.min(cw, 260)
-			local ph = (el.Searchable and 26 or 0) + visible * itemH + 4
+			local pw = math.min(cw, 270)
+			local ph = (el.Searchable and 28 or 0) + visible * itemH + 8
 			local px = cx
 			local py = y + el.h + 4
+			local popAnim = clampN(el._justOpened and 1 or 1, 0, 1)
 			if py + ph > state.viewH then
 				py = y - ph - 4
 			end
 			if py < 0 then py = y + el.h + 4 end
 
+			el._popupShadow.Color = th.shadow
+			el._popupShadow.Transparency = 0.45
+			el._popupShadow.Corner = 10
+			setRect(el._popupShadow, px + 3, py + 3, pw, ph)
+			el._popupShadow.Visible = true
+
 			el._popupBg.Color = th.tab
-			el._popupBg.Corner = 8
-			el._popupBg.Outline = true
+			el._popupBg.Corner = 10
 			setRect(el._popupBg, px, py, pw, ph)
 			el._popupBg.Visible = true
 
-			local iy = py
+			el._popupBorder.Color = colorLerp(th.border, th.activeRing, el._hoverT)
+			el._popupBorder.Transparency = visibleT(0)
+			el._popupBorder.Corner = 10
+			el._popupBorder.Outline = true
+			el._popupBorder.Filled = false
+			el._popupBorder.Thickness = 1
+			setRect(el._popupBorder, px, py, pw, ph)
+			el._popupBorder.Visible = true
+
+			el._popupBg.Transparency = visibleT(0)
+
+			local iy = py + 4
 			if el.Searchable then
 				el._searchBg.Color = th.field
-				el._searchBg.Corner = 6
-				setRect(el._searchBg, px + 4, iy + 2, pw - 8, 20)
+				el._searchBg.Corner = CORNER_SM
+				el._searchBg.Outline = true
+				el._searchBg.Thickness = 1
+				setRect(el._searchBg, px + 6, iy, pw - 12, 20)
 				el._searchBg.Visible = true
 				local place = el._search == "" and (config.SearchPlaceholder or "Search...") or el._search
-				setText(el._searchText, place, px + 9, iy + 5, 11, el._search == "" and th.textFaint or th.text, false, true)
-				iy = iy + 26
+				setText(el._searchText, place, px + 12, iy + 3, 11, el._search == "" and th.textFaint or th.text, false, true)
+				iy = iy + 28
 			end
 
 			local listH = visible * itemH
@@ -1312,24 +1630,32 @@ local function createDropdown(tab, config)
 				if o ~= nil then
 					local yyReal = iy + (idx - 1 - scrollOff) * itemH
 					local selected = el.Multi and el.Value[o] == true or el.Value == o
-					local ohov = hit(state.MouseX, state.MouseY, px + 2, yyReal, pw - 4, itemH)
+					local ohov = hit(state.MouseX, state.MouseY, px + 3, yyReal, pw - 6, itemH)
 					if ohov or selected then
-						slot.bg.Transparency = visibleT(0.05)
-						slot.bg.Color = selected and Color3.fromRGB(
-							intRound(th.accent.R * 255 * 0.35 + th.tab.R * 255 * 0.65),
-							intRound(th.accent.G * 255 * 0.35 + th.tab.G * 255 * 0.65),
-							intRound(th.accent.B * 255 * 0.35 + th.tab.B * 255 * 0.65)
+						slot.bg.Transparency = visibleT(0)
+						slot.bg.Color = selected and colorLerp(
+							Color3.fromRGB(
+								intRound(th.accent.R * 255 * 0.30 + th.tab.R * 255 * 0.70),
+								intRound(th.accent.G * 255 * 0.30 + th.tab.G * 255 * 0.70),
+								intRound(th.accent.B * 255 * 0.30 + th.tab.B * 255 * 0.70)
+							),
+							th.tabHover,
+							ohov and 1 or 0
 						) or th.tabHover
+						slot.bg.Outline = selected and not ohov
+						slot.bg.Thickness = 1
 					else
 						slot.bg.Transparency = 1
 						slot.bg.Color = th.tab
+						slot.bg.Outline = false
 					end
-					slot.bg.Corner = 4
-					setRect(slot.bg, px + 2, yyReal, pw - 4, itemH)
+					slot.bg.Corner = CORNER_SM
+					setRect(slot.bg, px + 3, yyReal, pw - 6, itemH - 3)
 					slot.bg.Visible = ohov or selected
-					setText(slot.text, el.Displayer(o), px + 10, yyReal + 6, 12, selected and th.accent or th.text, false, true)
+					setText(slot.text, el.Displayer(o), px + 12, yyReal + 6, 12, selected and th.accent or th.text, false, true)
 					if selected then
-						setText(slot.check, "*", px + pw - 16, yyReal + 5, 12, th.accent, true, true)
+						slot.bg.Outline = true
+						setText(slot.check, "x", px + pw - 18, yyReal + 6, 12, th.checkmark, true, true)
 					else
 						slot.check.Visible = false
 					end
@@ -1357,7 +1683,7 @@ local function createDropdown(tab, config)
 			end
 
 			if maxScroll > 0 then
-				local sx = px + pw - 8
+				local sx = px + pw - 9
 				el._popupScroll.Color = th.elementPress
 				el._popupScroll.Corner = 2
 				setRect(el._popupScroll, sx, iy, 3, listH)
@@ -1369,7 +1695,7 @@ local function createDropdown(tab, config)
 				setRect(el._popupScrollThumb, sx, thumbY, 3, thumbH)
 				el._popupScrollThumb.Visible = true
 
-				if state.Click and hit(state.MouseX, state.MouseY, sx, iy, 3, listH) then
+				if state.Click and hit(state.MouseX, state.MouseY, sx - 3, iy, 9, listH) then
 					el._dragScroll = true
 				end
 				if el._dragScroll then
@@ -1453,7 +1779,7 @@ local function createColorpicker(tab, config)
 		_ownerTab = tab,
 		_visible = false,
 		_hoverT = 0,
-		Height = 40,
+		Height = 38,
 		Value = config.Default or Color3.new(1, 1, 1),
 		alpha = config.Transparency,
 		UpdateOnChange = config.UpdateOnChange == true,
@@ -1469,11 +1795,16 @@ local function createColorpicker(tab, config)
 	el._h, el._s, el._v = rgbToHsv(el.Value.R, el.Value.G, el.Value.B)
 
 	el._bg = newSquare()
+	el._bar = newSquare()
 	el._title = newText(TEXT_FONT_BODY)
 	el._swatch = newSquare()
+	el._swatchRing = newSquare()
+	el._swatchFrame = newSquare()
 	el._valueHex = newText(TEXT_FONT_BODY)
 
+	el._popShadow = newSquare()
 	el._popBg = newSquare()
+	el._popBorder = newSquare()
 	el._svGrid = {}
 	for i = 1, 9 do
 		el._svGrid[i] = {}
@@ -1482,6 +1813,7 @@ local function createColorpicker(tab, config)
 		end
 	end
 	el._svCursor = newCircle()
+	el._svCursorRing = newCircle()
 	el._hueBar = {}
 	for i = 1, 8 do
 		el._hueBar[i] = newSquare()
@@ -1522,15 +1854,21 @@ local function createColorpicker(tab, config)
 
 	function el:_hideAll()
 		el._bg.Visible = false
+		el._bar.Visible = false
 		el._title.Visible = false
 		el._swatch.Visible = false
+		el._swatchRing.Visible = false
+		el._swatchFrame.Visible = false
 		el._valueHex.Visible = false
 		el:_closePopup()
 	end
 
 	function el:_closePopup()
+		el._popShadow.Visible = false
 		el._popBg.Visible = false
+		el._popBorder.Visible = false
 		el._svCursor.Visible = false
+		el._svCursorRing.Visible = false
 		el._hueCursor.Visible = false
 		for _, row in ipairs(el._svGrid) do
 			for _, d in ipairs(row) do d.Visible = false end
@@ -1562,11 +1900,17 @@ local function createColorpicker(tab, config)
 	function el:_destroyDrawings()
 		el:_closePopup()
 		el._bg:Remove()
+		el._bar:Remove()
 		el._title:Remove()
 		el._swatch:Remove()
+		el._swatchRing:Remove()
+		el._swatchFrame:Remove()
 		el._valueHex:Remove()
+		el._popShadow:Remove()
 		el._popBg:Remove()
+		el._popBorder:Remove()
 		el._svCursor:Remove()
+		el._svCursorRing:Remove()
 		el._hueCursor:Remove()
 		for _, row in ipairs(el._svGrid) do
 			for _, d in ipairs(row) do d:Remove() end
@@ -1588,7 +1932,7 @@ local function createColorpicker(tab, config)
 	function el:_outerClick()
 		if el._open and not el._justOpened then
 			local p = el._popBg
-			if not hit(state.MouseX, state.MouseY, p.Position.X, p.Position.Y, 220, 176) then
+			if not hit(state.MouseX, state.MouseY, p.Position.X, p.Position.Y, 236, 196) then
 				el:_closePopup()
 			end
 		end
@@ -1603,26 +1947,48 @@ local function createColorpicker(tab, config)
 			return
 		end
 		local hov = hit(state.MouseX, state.MouseY, cx, y, cw, el.h)
-		el._hoverT = ease(el._hoverT, (hov or el._open) and 1 or 0, dt, 12)
-		el._bg.Color = Color3.fromRGB(
-			intRound(lerpN(th.element.R * 255, th.elementHover.R * 255, el._hoverT)),
-			intRound(lerpN(th.element.G * 255, th.elementHover.G * 255, el._hoverT)),
-			intRound(lerpN(th.element.B * 255, th.elementHover.B * 255, el._hoverT))
-		)
-		el._bg.Corner = 5
-		el._bg.Outline = true
-		el._bg.Transparency = visibleT(0)
+		el._hoverT = ease(el._hoverT, (hov or el._open) and 1 or 0, dt, 14)
+
+		local base = colorLerp(th.element, th.elementHover, el._hoverT)
+		el._bg.Color = base
+		el._bg.Corner = CORNER_EL
+		el._bg.Outline = hov or el._open
+		el._bg.Thickness = (hov or el._open) and 1 or 0
 		setRect(el._bg, cx, y, cw, el.h)
-		setText(el._title, el.Title or "", cx + 16, y + 12, 13, th.text, false, true)
+
+		el._bar.Color = el._open and colorLerp(th.accent, th.accent2, 0.2) or (el._hoverT > 0.01 and th.accent or th.border)
+		el._bar.Corner = 2
+		setRect(el._bar, cx, y + 4, 3, el.h - 8)
+		el._bar.Visible = true
+
+		setText(el._title, el.Title or "", cx + 14, y + 12, 13, th.text, false, true)
+
+		-- swatch with ring + checker frame
+		local sx = cx + cw - 46
+		local sy = y + (el.h - 20) / 2
+		el._swatchFrame.Color = th.borderSoft
+		el._swatchFrame.Corner = 5
+		el._swatchFrame.Outline = true
+		el._swatchFrame.Thickness = 1
+		setRect(el._swatchFrame, sx - 3, sy - 3, 26, 26)
+		el._swatchFrame.Visible = true
 
 		el._swatch.Color = el.Value
-		el._swatch.Corner = 6
-		setRect(el._swatch, cx + cw - 40, y + 8, 18, 18)
+		el._swatch.Corner = 4
+		setRect(el._swatch, sx, sy, 20, 20)
 		el._swatch.Transparency = el.alpha and clampN(el.alpha, 0, 0.9) or 0
 		el._swatch.Visible = true
 
+		el._swatchRing.Color = th.swatchBorder
+		el._swatchRing.Corner = 4
+		el._swatchRing.Outline = true
+		el._swatchRing.Filled = false
+		el._swatchRing.Thickness = (hov or el._open) and 1 or 0
+		setRect(el._swatchRing, sx, sy, 20, 20)
+		el._swatchRing.Visible = hov or el._open
+
 		local hexFull = hexFromColor(el.Value, el.alpha and el.alpha > 0 and el.alpha or nil)
-		setText(el._valueHex, hexFull, cx + cw - 66, y + 10, 12, th.textDim, false, true)
+		setText(el._valueHex, hexFull, cx + cw - 74, y + 12, 12, th.text, false, true)
 
 		if state.Click and hov then
 			if el._open then
@@ -1642,22 +2008,36 @@ local function createColorpicker(tab, config)
 		end
 
 		if el._open then
-			local pw, ph = 236, 188
+			local pw, ph = 236, 196
 			local px = math.max(cx, 4)
 			if px + pw > state.viewW then px = cx end
 			local py = y + el.h + 4
 			if py + ph > state.viewH then py = y - ph - 4 end
 			if py < 0 then py = y + el.h + 4 end
 
+			el._popShadow.Color = th.shadow
+			el._popShadow.Transparency = 0.45
+			el._popShadow.Corner = 12
+			setRect(el._popShadow, px + 3, py + 3, pw, ph)
+			el._popShadow.Visible = true
+
 			el._popBg.Color = th.tab
-			el._popBg.Corner = 10
-			el._popBg.Outline = true
+			el._popBg.Corner = 12
+			el._popBg.Transparency = visibleT(0)
 			setRect(el._popBg, px, py, pw, ph)
 			el._popBg.Visible = true
 
+			el._popBorder.Color = colorLerp(th.border, th.activeRing, el._hoverT)
+			el._popBorder.Corner = 12
+			el._popBorder.Outline = true
+			el._popBorder.Filled = false
+			el._popBorder.Thickness = 1
+			setRect(el._popBorder, px, py, pw, ph)
+			el._popBorder.Visible = true
+
 			local svX = px + 10
-			local svY = py + 10
-			local svSize = 96
+			local svY = py + 12
+			local svSize = 104
 			local cell = svSize / 9
 
 			for i = 1, 9 do
@@ -1677,9 +2057,9 @@ local function createColorpicker(tab, config)
 			el._svCursor.Position = Vector2.new(svX + el._s * svSize, svY + (1 - el._v) * svSize)
 			el._svCursor.Visible = true
 
-			local hx = px + 116
-			local hy = py + 10
-			local hw = 10
+			local hx = px + 124
+			local hy = py + 12
+			local hw = 12
 			local hh = svSize
 			local hcell = hh / 8
 			for i = 1, 8 do
@@ -1691,10 +2071,12 @@ local function createColorpicker(tab, config)
 			end
 			el._hueCursor.Color = Color3.new(1, 1, 1)
 			el._hueCursor.Corner = 2
-			setRect(el._hueCursor, hx - 2, hy + (el._h / 360) * hh - 2, hw + 4, 3)
+			el._hueCursor.Outline = true
+			el._hueCursor.Thickness = 1
+			setRect(el._hueCursor, hx - 3, hy + (el._h / 360) * hh - 2, hw + 6, 3)
 			el._hueCursor.Visible = true
 
-			local ay = py + 10 + svSize + 14
+			local ay = py + 12 + svSize + 14
 			if el._hasAlpha then
 				local ax = px + 10
 				local acell = svSize / 8
@@ -1707,43 +2089,49 @@ local function createColorpicker(tab, config)
 						intRound(lerpN(base.G * 255, 0, 1 - wh)),
 						intRound(lerpN(base.B * 255, 0, 1 - wh))
 					)
-					setRect(ab, ax + (i - 1) * acell, ay, acell + 1, 8)
+					setRect(ab, ax + (i - 1) * acell, ay, acell + 1, 9)
 					ab.Visible = true
 				end
 				el._alphaCursor.Color = Color3.new(1, 1, 1)
 				el._alphaCursor.Corner = 2
-				setRect(el._alphaCursor, ax + clampN(el.alpha or 0, 0, 1) * svSize - 2, ay - 2, 4, 12)
+				el._alphaCursor.Outline = true
+				el._alphaCursor.Thickness = 1
+				setRect(el._alphaCursor, ax + clampN(el.alpha or 0, 0, 1) * svSize - 3, ay - 2, 6, 13)
 				el._alphaCursor.Visible = true
-				ay = ay + 18
+				ay = ay + 22
 			end
 
-			setText(el._hexLab, "HEX", px + 10, ay, 10, th.textFaint, false, true)
+			setText(el._hexLab, "HEX", px + 10, ay + 1, 10, th.textFaint, false, true)
 			el._hexBg.Color = th.field
-			el._hexBg.Corner = 4
-			setRect(el._hexBg, px + 44, ay - 4, 120, 20)
+			el._hexBg.Corner = CORNER_SM
+			el._hexBg.Outline = el._editHex
+			el._hexBg.Thickness = el._editHex and 1 or 0
+			setRect(el._hexBg, px + 44, ay - 4, 122, 22)
 			el._hexBg.Visible = true
 			local hexStr = el._editHex and (el._hexBuf or "") or hexFromColor(el.Value, el.alpha and el.alpha > 0 and el.alpha or nil)
-			setText(el._hexText, hexStr, px + 52, ay, 12, th.text, false, true)
+			setText(el._hexText, hexStr, px + 52, ay, 12, el._editHex and th.text or th.textDim, false, true)
 			el._hexLab.Visible = true
 
-			local by = py + ph - 26
+			local by = py + ph - 28
 			el._cancelBg.Color = th.elementPress
-			el._cancelBg.Corner = 4
-			setRect(el._cancelBg, px + 10, by, (pw - 28) / 2, 18)
+			el._cancelBg.Corner = CORNER_SM
+			el._cancelBg.Outline = true
+			el._cancelBg.Thickness = 1
+			setRect(el._cancelBg, px + 10, by, (pw - 30) / 2, 20)
 			el._cancelBg.Visible = true
-			setText(el._cancelText, "Cancel", px + 10 + (pw - 28) / 4, by + 4, 11, th.textDim, true, true)
-			el._doneBg.Color = th.accent
-			el._doneBg.Corner = 4
-			setRect(el._doneBg, px + 10 + (pw - 28) / 2 + 8, by, (pw - 28) / 2, 18)
+			setText(el._cancelText, "Cancel", px + 10 + (pw - 30) / 4, by + 4, 11, th.textDim, true, true)
+			el._doneBg.Color = colorLerp(th.accent, th.accent2, 0.15)
+			el._doneBg.Corner = CORNER_SM
+			setRect(el._doneBg, px + 10 + (pw - 30) / 2 + 10, by, (pw - 30) / 2, 20)
 			el._doneBg.Visible = true
-			setText(el._doneText, "Done", px + 10 + (pw - 28) / 2 + 8 + (pw - 28) / 4, by + 4, 11, th.titleBarText, true, true)
+			setText(el._doneText, "Done", px + 10 + (pw - 30) / 2 + 10 + (pw - 30) / 4, by + 4, 11, th.titleBarText, true, true)
 
 			local inSV = hit(state.MouseX, state.MouseY, svX, svY, svSize, svSize)
 			local inHue = hit(state.MouseX, state.MouseY, hx, hy, hw, hh)
-			local inAlpha = el._hasAlpha and hit(state.MouseX, state.MouseY, px + 10, py + 10 + svSize + 14, svSize, 8)
-			local inCancel = hit(state.MouseX, state.MouseY, px + 10, by, (pw - 28) / 2, 18)
-			local inDone = hit(state.MouseX, state.MouseY, px + 10 + (pw - 28) / 2 + 8, by, (pw - 28) / 2, 18)
-			local inHex = hit(state.MouseX, state.MouseY, px + 44, ay - 4, 120, 20)
+			local inAlpha = el._hasAlpha and hit(state.MouseX, state.MouseY, px + 10, py + 12 + svSize + 14, svSize, 9)
+			local inCancel = hit(state.MouseX, state.MouseY, px + 10, by, (pw - 30) / 2, 20)
+			local inDone = hit(state.MouseX, state.MouseY, px + 10 + (pw - 30) / 2 + 10, by, (pw - 30) / 2, 20)
+			local inHex = hit(state.MouseX, state.MouseY, px + 44, ay - 4, 122, 22)
 
 			if state.Click and inSV then el._dragSV = true end
 			if state.Click and inHue then el._dragHue = true end
@@ -1836,7 +2224,7 @@ local function createInput(tab, config)
 		_ownerTab = tab,
 		_visible = false,
 		_hoverT = 0,
-		Height = 50,
+		Height = 48,
 		Value = config.Default or "",
 		Placeholder = config.Placeholder or "",
 		Numeric = config.Numeric == true,
@@ -1848,8 +2236,10 @@ local function createInput(tab, config)
 	}, BaseHandle)
 
 	el._bg = newSquare()
+	el._bar = newSquare()
 	el._title = newText(TEXT_FONT_BODY)
 	el._field = newSquare()
+	el._fieldBorder = newSquare()
 	el._text = newText(TEXT_FONT_BODY)
 	el._caretDraw = newSquare()
 
@@ -1872,16 +2262,20 @@ local function createInput(tab, config)
 
 	function el:_hideAll()
 		el._bg.Visible = false
+		el._bar.Visible = false
 		el._title.Visible = false
 		el._field.Visible = false
+		el._fieldBorder.Visible = false
 		el._text.Visible = false
 		el._caretDraw.Visible = false
 	end
 
 	function el:_destroyDrawings()
 		el._bg:Remove()
+		el._bar:Remove()
 		el._title:Remove()
 		el._field:Remove()
+		el._fieldBorder:Remove()
 		el._text:Remove()
 		el._caretDraw:Remove()
 	end
@@ -1906,46 +2300,55 @@ local function createInput(tab, config)
 			return
 		end
 		local hov = hit(state.MouseX, state.MouseY, cx, y, cw, el.h)
-		el._hoverT = ease(el._hoverT, (hov or el._focused) and 1 or 0, dt, 12)
+		el._hoverT = ease(el._hoverT, (hov or el._focused) and 1 or 0, dt, 14)
 
-		el._bg.Color = Color3.fromRGB(
-			intRound(lerpN(th.element.R * 255, th.elementHover.R * 255, el._hoverT)),
-			intRound(lerpN(th.element.G * 255, th.elementHover.G * 255, el._hoverT)),
-			intRound(lerpN(th.element.B * 255, th.elementHover.B * 255, el._hoverT))
-		)
-		el._bg.Corner = 5
-		el._bg.Outline = true
-		el._bg.Transparency = visibleT(0)
+		local base = colorLerp(th.element, th.elementHover, el._hoverT)
+		el._bg.Color = base
+		el._bg.Corner = CORNER_EL
 		setRect(el._bg, cx, y, cw, el.h)
-		setText(el._title, el.Title or "", cx + 16, y + 8, 13, th.text, false, true)
 
-		local fx = cx + 12
-		local fy = y + 27
-		local fw = cw - 24
+		el._bar.Color = el._focused and colorLerp(th.accent, th.accent2, 0.2) or (el._hoverT > 0.01 and th.accent or th.border)
+		el._bar.Corner = 2
+		setRect(el._bar, cx, y + 4, 3, el.h - 8)
+		el._bar.Visible = true
+
+		setText(el._title, el.Title or "", cx + 14, y + 6, 13, th.text, false, true)
+
+		local fx = cx + 14
+		local fy = y + 26
+		local fw = cw - 28
 		local fh = 18
-		el._field.Color = el._focused and th.accent2 or (hov and th.fieldHover or th.field)
-		el._field.Corner = 6
+		el._field.Color = el._focused and th.fieldHover or (hov and th.fieldHover or th.field)
+		el._field.Corner = CORNER_SM
 		setRect(el._field, fx, fy, fw, fh)
 		el._field.Visible = true
 
+		el._fieldBorder.Color = el._focused and colorLerp(th.accent, th.accent2, 0.2) or (hov and th.border or th.borderSoft)
+		el._fieldBorder.Corner = CORNER_SM
+		el._fieldBorder.Outline = true
+		el._fieldBorder.Filled = false
+		el._fieldBorder.Thickness = 1
+		setRect(el._fieldBorder, fx, fy, fw, fh)
+		el._fieldBorder.Visible = true
+
 		local disp = el.Value
 		if #disp == 0 then
-			setText(el._text, el.Placeholder, fx + 5, fy + 1, 12, th.textFaint, false, true)
+			setText(el._text, el.Placeholder, fx + 6, fy + 2, 12, th.textFaint, false, true)
 			el._caretDraw.Visible = false
 		else
 			el._caret = clampN(el._caret, 0, #disp)
 			local deadW = textW(disp:sub(1, el._caret), 12)
-			local avail = math.max(fw - 12, 0)
-			local xoff = fx + 5
+			local avail = math.max(fw - 14, 0)
+			local xoff = fx + 6
 			if deadW > avail then
-				xoff = fx + 5 - (deadW - avail)
+				xoff = fx + 6 - (deadW - avail)
 			end
-			setText(el._text, disp, xoff, fy + 1, 12, th.text, false, true)
+			setText(el._text, disp, xoff, fy + 2, 12, th.text, false, true)
 
 			if el._focused then
-				local caretX = fx + 5 + textW(disp:sub(1, el._caret), 12)
+				local caretX = fx + 6 + textW(disp:sub(1, el._caret), 12)
 				el._caretDraw.Color = th.accent
-				setRect(el._caretDraw, caretX, fy + 2, 1, 12)
+				setRect(el._caretDraw, caretX, fy + 3, 1, 12)
 				el._caretDraw.Visible = (tick() * 2) % 1 < 0.6
 			else
 				el._caretDraw.Visible = false
@@ -2038,11 +2441,12 @@ local function createParagraph(tab, config)
 		local n = 0
 		for _ in string.gmatch(el.Content or "", "\n") do n = n + 1 end
 		if #(el.Content or "") > 0 then n = n + 1 end
-		if n == 0 then return 12 end
-		return 10 + n * 15
+		if n == 0 then return 16 end
+		return 14 + n * 16
 	end
 
-	el._title = newText(TEXT_FONT_BODY)
+	el._accent = newSquare()
+	el._title = newText(TEXT_FONT_TITLE)
 	el._lines = {}
 	for i = 1, 6 do
 		el._lines[i] = newText(TEXT_FONT_BODY)
@@ -2057,11 +2461,13 @@ local function createParagraph(tab, config)
 	el.SetValue = el.SetContent
 
 	function el:_hideAll()
+		el._accent.Visible = false
 		el._title.Visible = false
 		for _, d in ipairs(el._lines) do d.Visible = false end
 	end
 
 	function el:_destroyDrawings()
+		el._accent:Remove()
 		el._title:Remove()
 		for _, d in ipairs(el._lines) do d:Remove() end
 	end
@@ -2080,18 +2486,23 @@ local function createParagraph(tab, config)
 			else return cx end
 		end
 		if el.Title and #el.Title > 0 then
-			setText(el._title, el.Title, alignX(textW(el.Title, 13), el.TitleAlignment), y + 2, 13, th.accent, false, true)
+			el._accent.Color = colorLerp(th.accent, th.accent2, 0.2)
+			el._accent.Corner = 2
+			setRect(el._accent, cx, y + 4, 3, 12)
+			el._accent.Visible = true
+			setText(el._title, el.Title, cx + 10, y, 13, th.text, false, true)
 		else
+			el._accent.Visible = false
 			el._title.Visible = false
 		end
-		local ly = y + 26
+		local ly = y + 22
 		local i = 1
 		local content = el.Content or ""
 		for line in string.gmatch(content, "[^\n]*") do
 			if i > 6 then break end
 			if #line > 0 then
-				setText(el._lines[i], line, alignX(textW(line, 12), el.ContentAlignment), ly, 12, th.textDim, false, true)
-				ly = ly + 15
+				setText(el._lines[i], line, cx + 10, ly, 12, th.textDim, false, true)
+				ly = ly + 16
 				i = i + 1
 			end
 		end
@@ -2119,7 +2530,7 @@ local function createKeybind(tab, config)
 		_ownerTab = tab,
 		_visible = false,
 		_hoverT = 0,
-		Height = 40,
+		Height = 38,
 		mode = config.Mode or "Toggle",
 		toggled = false,
 		_listening = false,
@@ -2132,9 +2543,12 @@ local function createKeybind(tab, config)
 	end
 
 	el._bg = newSquare()
+	el._bar = newSquare()
 	el._title = newText(TEXT_FONT_BODY)
 	el._field = newSquare()
+	el._fieldBorder = newSquare()
 	el._fieldText = newText(TEXT_FONT_BODY)
+	el._dot = newCircle()
 
 	local function keyLabel()
 		if el._listening then return "Listening..." end
@@ -2178,16 +2592,22 @@ local function createKeybind(tab, config)
 
 	function el:_hideAll()
 		el._bg.Visible = false
+		el._bar.Visible = false
 		el._title.Visible = false
 		el._field.Visible = false
+		el._fieldBorder.Visible = false
 		el._fieldText.Visible = false
+		el._dot.Visible = false
 	end
 
 	function el:_destroyDrawings()
 		el._bg:Remove()
+		el._bar:Remove()
 		el._title:Remove()
 		el._field:Remove()
+		el._fieldBorder:Remove()
 		el._fieldText:Remove()
+		el._dot:Remove()
 	end
 
 	function el:_update(dt, cx, cy, cw, ch, scroll)
@@ -2199,26 +2619,44 @@ local function createKeybind(tab, config)
 			return
 		end
 		local hov = hit(state.MouseX, state.MouseY, cx, y, cw, el.h)
-		el._hoverT = ease(el._hoverT, (hov or el._listening) and 1 or 0, dt, 12)
+		el._hoverT = ease(el._hoverT, (hov or el._listening) and 1 or 0, dt, 14)
 
-		el._bg.Color = Color3.fromRGB(
-			intRound(lerpN(th.element.R * 255, th.elementHover.R * 255, el._hoverT)),
-			intRound(lerpN(th.element.G * 255, th.elementHover.G * 255, el._hoverT)),
-			intRound(lerpN(th.element.B * 255, th.elementHover.B * 255, el._hoverT))
-		)
-		el._bg.Corner = 5
-		el._bg.Outline = true
-		el._bg.Transparency = visibleT(0)
+		local base = colorLerp(th.element, th.elementHover, el._hoverT)
+		el._bg.Color = base
+		el._bg.Corner = CORNER_EL
+		el._bg.Outline = hov or el._listening
+		el._bg.Thickness = (hov or el._listening) and 1 or 0
 		setRect(el._bg, cx, y, cw, el.h)
-		setText(el._title, el.Title or "", cx + 16, y + 12, 13, th.text, false, true)
 
-		local fx = cx + cw - 104
-		local fy = y + 9
-		local fw = 92
-		el._field.Color = el._listening and th.accent or (hov and th.fieldHover or th.field)
-		el._field.Corner = 6
-		setRect(el._field, fx, fy, fw, 20)
+		el._bar.Color = el._listening and colorLerp(th.accent, th.accent2, 0.2) or (el._hoverT > 0.01 and th.accent or th.border)
+		el._bar.Corner = 2
+		setRect(el._bar, cx, y + 4, 3, el.h - 8)
+		el._bar.Visible = true
+
+		setText(el._title, el.Title or "", cx + 14, y + 12, 13, th.text, false, true)
+
+		-- mode dot
+		el._dot.Color = el.mode == "Hold" and th.warning or el.mode == "Always" and th.success or th.accent
+		el._dot.Radius = 3
+		el._dot.Position = Vector2.new(cx + 12, y + 28)
+		el._dot.Visible = el.mode ~= "Toggle"
+
+		local fx = cx + cw - 98
+		local fy = y + 8
+		local fw = 84
+		el._field.Color = el._listening and colorLerp(th.accent, th.accent2, 0.25) or (hov and th.fieldHover or th.field)
+		el._field.Corner = CORNER_SM
+		setRect(el._field, fx, fy, fw, 22)
 		el._field.Visible = true
+
+		el._fieldBorder.Color = el._listening and th.activeRing or th.borderSoft
+		el._fieldBorder.Corner = CORNER_SM
+		el._fieldBorder.Outline = true
+		el._fieldBorder.Filled = false
+		el._fieldBorder.Thickness = 1
+		setRect(el._fieldBorder, fx, fy, fw, 22)
+		el._fieldBorder.Visible = true
+
 		setText(el._fieldText, keyLabel(), fx + fw / 2, fy + 4, 12, el._listening and th.titleBarText or th.text, true, true)
 
 		if state.Click and hov then
@@ -2393,9 +2831,9 @@ end
 local function computeContentRect()
 	local topH = TITLE_H + ACCENT_H
 	local cx = win.x + win.TabWidth
-	local cy = win.y + topH + CONTENT_HEADER_H
+	local cy = win.y + topH
 	local cw = math.max(win.w - win.TabWidth, 60)
-	local ch = math.max(win.h - topH - CONTENT_HEADER_H, 40)
+	local ch = math.max(win.h - topH, 40)
 	return cx, cy, cw, ch
 end
 
@@ -2410,71 +2848,145 @@ local function renderWindow(dt)
 	win.winAlpha = ease(win.winAlpha, 1, dt, 8)
 
 	local x, y, w, h = win.x, win.y, win.w, win.h
-	local viewW, viewH = state.viewW, state.viewH
+	local viewW = state.viewW
+	local viewH = state.viewH
 
 	if win.maximized then
 		x, y, w, h = 1, 1, viewW - 2, viewH - 2
 	end
 	if win.minimized then
-		h = TITLE_H + ACCENT_H + 2
+		h = TITLE_H + ACCENT_H + 6
 	end
 
-	-- Base frame
+	local a = win.winAlpha
+
+	-- drop shadow layers
+	local shA = 0.22 * a
+	chrome.shadow1.Color = th.shadow
+	chrome.shadow1.Transparency = shA
+	chrome.shadow1.Corner = CORNER_WIN + 4
+	setRect(chrome.shadow1, x + 8, y + 10, w, h)
+	chrome.shadow1.Visible = not win.minimized
+
+	chrome.shadow2.Color = th.shadow
+	chrome.shadow2.Transparency = shA * 0.6
+	chrome.shadow2.Corner = CORNER_WIN + 3
+	setRect(chrome.shadow2, x + 5, y + 6, w, h)
+	chrome.shadow2.Visible = not win.minimized
+
+	chrome.shadow3.Color = th.bgAlt
+	chrome.shadow3.Transparency = visibleT(0)
+	chrome.shadow3.Corner = CORNER_WIN + 2
+	setRect(chrome.shadow3, x + 2, y + 3, w, h)
+	chrome.shadow3.Visible = false
+
+	-- main window surface
 	chrome.bg.Color = th.bg
-	chrome.bg.Corner = 8
+	chrome.bg.Corner = CORNER_WIN
 	chrome.bg.Transparency = visibleT(0)
 	chrome.bg.Outline = true
+	chrome.bg.Thickness = 1
+	chrome.bg.Color = th.bg
 	setRect(chrome.bg, x, y, w, h)
+	chrome.bg.Visible = true
 
-	chrome.accent.Color = th.accentBar
-	chrome.accent.Corner = 1
-	setRect(chrome.accent, x + 1, y + 1, w - 2, ACCENT_H)
-	chrome.accent.Visible = not win.minimized
+	-- outer border
+	chrome.frame.Color = colorLerp(th.border, th.activeRing, 0.25)
+	chrome.frame.Corner = CORNER_WIN
+	chrome.frame.Outline = true
+	chrome.frame.Filled = false
+	chrome.frame.Thickness = 1
+	setRect(chrome.frame, x, y, w, h)
+	chrome.frame.Visible = true
 
-	-- Header
+	-- top accent gradient strip (three overlapping bars for gradient feel)
+	local ga = win.winAlpha
+	chrome.accentA.Color = th.accent
+	chrome.accentA.Corner = 2
+	chrome.accentA.Transparency = visibleT(0)
+	setRect(chrome.accentA, x + 12, y + ACCENT_H, w - 24, 2)
+	chrome.accentA.Visible = not win.minimized
+
+	chrome.accentB.Color = th.accent2
+	chrome.accentB.Corner = 2
+	chrome.accentB.Transparency = visibleT(0.15)
+	setRect(chrome.accentB, x + 12, y + ACCENT_H, (w - 24) * 0.7, 2)
+	chrome.accentB.Visible = not win.minimized
+
+	chrome.accentC.Color = th.accent3
+	chrome.accentC.Corner = 2
+	chrome.accentC.Transparency = visibleT(0.3)
+	setRect(chrome.accentC, x + 12, y + ACCENT_H, (w - 24) * 0.4, 2)
+	chrome.accentC.Visible = not win.minimized
+
+	-- title bar surface
 	chrome.title.Color = th.title
-	chrome.title.Corner = 8
-	chrome.title.Transparency = visibleT(0)
-	setRect(chrome.title, x + 1, y + ACCENT_H + 1, w - 2, TITLE_H - 1)
+	chrome.title.Transparency = visibleT(0.02)
+	chrome.title.Corner = CORNER_WIN
+	chrome.title.Corner = math.max(CORNER_WIN - 2, 8)
+	setRect(chrome.title, x + 1, y + ACCENT_H + 1, w - 2, TITLE_H + 2)
+	chrome.title.Visible = true
 
 	local titleY = win.SubTitle and 7 or 13
-	setText(chrome.titleText, win.Title, x + 18, y + ACCENT_H + titleY, 15, th.titleBarText, false, true)
+	setGradientText(chrome.titleText, chrome.titleText2, win.Title, x + 16, y + ACCENT_H + titleY, 15,
+		th.titleBarText, colorLerp(th.titleBarText, th.accent, 0.55), false, true)
 	if win.SubTitle then
-		setText(chrome.subText, win.SubTitle, x + 18, y + ACCENT_H + 27, 10, th.textDim, false, true)
+		setText(chrome.subText, win.SubTitle, x + 16, y + ACCENT_H + 26, 11, th.titleBarSub, false, true)
 	else
 		chrome.subText.Visible = false
 	end
 
-	-- Window controls
-	local btnW, btnH = 30, 26
-	local by = y + 10
-	local bxClose = x + w - btnW - 8
-	local bxMax = bxClose - btnW - 4
-	local bxMin = bxMax - btnW - 4
+	-- app icon square on title bar
+	chrome.iconBg.Color = colorLerp(th.accent, th.accent2, 0.3)
+	chrome.iconBg.Corner = 5
+	chrome.iconBg.Outline = true
+	chrome.iconBg.Thickness = 1
+	setRect(chrome.iconBg, x + 16, y + ACCENT_H + 11, 22, 22)
+	chrome.iconBg.Visible = true
+	chrome.iconText.Text = "N"
+	setText(chrome.iconText, "N", x + 27, y + ACCENT_H + 14, 13, th.titleBarText, true, true)
+	if win.SubTitle then
+		setGradientText(chrome.titleText, chrome.titleText2, win.Title, x + 48, y + ACCENT_H + 7, 15,
+			th.titleBarText, colorLerp(th.titleBarText, th.accent, 0.55), false, true)
+	else
+		setGradientText(chrome.titleText, chrome.titleText2, win.Title, x + 48, y + ACCENT_H + 13, 15,
+			th.titleBarText, colorLerp(th.titleBarText, th.accent, 0.55), false, true)
+	end
+
+	-- window control buttons (rounded pills)
+	local btnW = 26
+	local btnH = 22
+	local by = y + ACCENT_H + 10
+	local bxClose = x + w - btnW - 10
+	local bxMax = bxClose - btnW - 6
+	local bxMin = bxMax - btnW - 6
 
 	local closeHovD = hit(state.MouseX, state.MouseY, bxClose, by, btnW, btnH)
 	local maxHovD = hit(state.MouseX, state.MouseY, bxMax, by, btnW, btnH)
 	local minHovD = hit(state.MouseX, state.MouseY, bxMin, by, btnW, btnH)
 
-	chrome.closeBg.Color = closeHovD and th.danger or th.title
+	chrome.closeBg.Color = closeHovD and th.danger or th.bgAlt
 	chrome.closeBg.Corner = 6
+	chrome.closeBg.Outline = closeHovD
+	chrome.closeBg.Thickness = 1
 	setRect(chrome.closeBg, bxClose, by, btnW, btnH)
-	setText(chrome.closeText, "x", bxClose + btnW / 2, by + 5, 12,
-		closeHovD and Color3.new(1, 1, 1) or th.textFaint, true, true)
+	setText(chrome.closeText, closeHovD and "x" or "x", bxClose + btnW / 2, by + 4, 12, closeHovD and Color3.new(1, 1, 1) or th.textDim, true, true)
 
-	chrome.maxBg.Color = maxHovD and th.elementHover or th.title
+	chrome.maxBg.Color = maxHovD and th.elementHover or th.bgAlt
 	chrome.maxBg.Corner = 6
+	chrome.maxBg.Outline = maxHovD
+	chrome.maxBg.Thickness = 1
 	setRect(chrome.maxBg, bxMax, by, btnW, btnH)
-	setText(chrome.maxText, win.maximized and "[]" or "[]", bxMax + btnW / 2, by + 5, 11,
-		maxHovD and th.text or th.textFaint, true, true)
+	setText(chrome.maxText, win.maximized and "x" or "+", bxMax + btnW / 2, by + 4, 12, maxHovD and th.text or th.textDim, true, true)
 
-	chrome.minBg.Color = minHovD and th.elementHover or th.title
+	chrome.minBg.Color = minHovD and th.elementHover or th.bgAlt
 	chrome.minBg.Corner = 6
+	chrome.minBg.Outline = minHovD
+	chrome.minBg.Thickness = 1
 	setRect(chrome.minBg, bxMin, by, btnW, btnH)
-	setText(chrome.minText, "-", bxMin + btnW / 2, by + 4, 13,
-		minHovD and th.text or th.textFaint, true, true)
+	setText(chrome.minText, "-", bxMin + btnW / 2, by + 4, 12, minHovD and th.text or th.textDim, true, true)
 
-	local titleDrag = hit(state.MouseX, state.MouseY, x + 4, y + ACCENT_H, w - 8, TITLE_H - ACCENT_H)
+	local titleDrag = hit(state.MouseX, state.MouseY, x + 2, y + ACCENT_H, w - 4, TITLE_H - ACCENT_H)
 		and not closeHovD and not maxHovD and not minHovD
 
 	if state.Click then
@@ -2511,7 +3023,7 @@ local function renderWindow(dt)
 	end
 
 	if win.dragging then
-		win.x = clampN(state.MouseX - win.dragOffX, -w + 160, viewW - 60)
+		win.x = clampN(state.MouseX - win.dragOffX, -w + 120, viewW - 60)
 		win.y = clampN(state.MouseY - win.dragOffY, 0, viewH - 40)
 	end
 
@@ -2521,23 +3033,33 @@ local function renderWindow(dt)
 	end
 
 	if win.minimized then
+		chrome.shadow1.Visible = false
+		chrome.shadow2.Visible = false
+		chrome.frame.Visible = false
 		chrome.tabBg.Visible = false
 		chrome.contentBg.Visible = false
 		chrome.divider.Visible = false
-		chrome.pageBar.Visible = false
-		chrome.pageTitle.Visible = false
-		chrome.pageSub.Visible = false
 		chrome.resizeGrip.Visible = false
+		chrome.scrollBg.Visible = false
+		chrome.scrollThumb.Visible = false
+		win.dragging = false
+		win.resizing = false
+		win._scrollDrag = false
+		chrome.iconBg.Visible = true
 		for _, t in ipairs(win.Tabs) do
 			if t.chrome then
 				t.chrome.bg.Visible = false
 				t.chrome.text.Visible = false
+				t.chrome.pill.Visible = false
 				t.chrome.color.Visible = false
+				t.chrome.underline.Visible = false
+				t.chrome.shadow.Visible = false
+				t.chrome.icon.Visible = false
 			end
-		end
-		for _, node in ipairs(win.SelectedTab and win.SelectedTab.nodes or {}) do
-			if node.kind == "element" then
-				node.element:_hideAll()
+			for _, node in ipairs(t.nodes) do
+				if node.kind == "element" then
+					node.element:_hideAll()
+				end
 			end
 		end
 		return
@@ -2545,78 +3067,96 @@ local function renderWindow(dt)
 
 	local cx, cy, cw, ch = computeContentRect()
 
-	-- Sidebar
 	chrome.tabBg.Color = th.tab
-	chrome.tabBg.Corner = 7
+	chrome.tabBg.Corner = 6
 	chrome.tabBg.Transparency = visibleT(0)
-	setRect(chrome.tabBg, x + 1, y + TITLE_H + ACCENT_H, win.TabWidth - 2, h - TITLE_H - ACCENT_H - 1)
+	setRect(chrome.tabBg, x + 1, y + TITLE_H + ACCENT_H, win.TabWidth - 1, ch)
 	chrome.tabBg.Visible = true
 
-	-- Content surface
 	chrome.contentBg.Color = th.content
-	chrome.contentBg.Corner = 7
+	chrome.contentBg.Corner = 6
 	chrome.contentBg.Transparency = visibleT(0)
-	setRect(chrome.contentBg, cx, y + TITLE_H + ACCENT_H, cw, h - TITLE_H - ACCENT_H - 1)
+	setRect(chrome.contentBg, cx, cy, cw, ch)
 	chrome.contentBg.Visible = true
 
-	-- Sidebar divider
 	chrome.divider.Color = th.border
+	setRect(chrome.divider, x + win.TabWidth - 1, y + TITLE_H + ACCENT_H, 1, ch)
 	chrome.divider.Transparency = visibleT(0)
-	chrome.divider.From = Vector2.new(x + win.TabWidth - 1, y + TITLE_H + ACCENT_H)
-	chrome.divider.To = Vector2.new(x + win.TabWidth - 1, y + h)
 	chrome.divider.Visible = true
 
-	-- Page header
-	local sel = win.SelectedTab
-	local pageTitle = sel and sel.Title or ""
-	local pageSub = (sel and sel.Icon and ("SECTION  •  " .. tostring(sel.Icon))) or "CONTROL PANEL"
-	chrome.pageBar.Color = th.content
-	chrome.pageBar.Corner = 0
-	setRect(chrome.pageBar, cx + 1, y + TITLE_H + ACCENT_H, cw - 2, CONTENT_HEADER_H)
-	chrome.pageBar.Visible = true
-
-	setText(chrome.pageTitle, pageTitle, cx + CONTENT_PAD_X, y + TITLE_H + ACCENT_H + 13, 16, th.text, false, true)
-	setText(chrome.pageSub, pageSub, cx + CONTENT_PAD_X, y + TITLE_H + ACCENT_H + 34, 9, th.textFaint, false, true)
-
-	-- Resize grip
-	chrome.resizeGrip.From = Vector2.new(x + w - 5, y + h - 12)
-	chrome.resizeGrip.To = Vector2.new(x + w - 13, y + h - 4)
+	chrome.resizeGrip.From = Vector2.new(x + w - 6, y + h - 14)
+	chrome.resizeGrip.To = Vector2.new(x + w - 14, y + h - 6)
 	chrome.resizeGrip.Color = th.textFaint
-	chrome.resizeGrip.Thickness = 1
-	chrome.resizeGrip.Visible = not win.maximized
+	chrome.resizeGrip.Thickness = 2
+	chrome.resizeGrip.Visible = not win.maximized and not win.minimized
 
-	-- Sidebar tabs
+	-- tabs
 	for i, t in ipairs(win.Tabs) do
-		local bxx = x + 8
-		local bw = win.TabWidth - 16
-		local bh = 34
-		local byy = y + TITLE_H + ACCENT_H + 12 + (i - 1) * (bh + 5)
+		local bxx = x + 10
+		local bh = 32
+		local byy = y + TITLE_H + ACCENT_H + 8 + (i - 1) * (bh + 5)
 		local active = t == win.SelectedTab
-		local hovT = hit(state.MouseX, state.MouseY, bxx, byy, bw, bh)
-
+		local hovT = hit(state.MouseX, state.MouseY, bxx, byy, win.TabWidth - 24, bh)
 		if not t.chrome then
 			t.chrome = {}
+			t.chrome.shadow = newSquare()
 			t.chrome.bg = newSquare()
-			t.chrome.text = newText(TEXT_FONT_BODY)
-			t.chrome.color = newSquare()
+			t.chrome.pill = newSquare()
+t.chrome.text = newText(TEXT_FONT_TITLE)
+		t.chrome.icon = newText(TEXT_FONT_BODY)
+		t.chrome.color = newSquare()
+		t.chrome.underline = newSquare()
+		t.chrome._anim = active and 1 or 0
+		end
+		local tc = t.chrome
+		local target = active and 1 or (hovT and 0.4 or 0)
+		tc._anim = ease(tc._anim, target, dt, 16)
+
+		local c = tc._anim
+		local bgColor = colorLerp(th.tab, th.tabHover, c)
+		if active then
+			bgColor = colorLerp(th.tab, th.tabActive, c)
 		end
 
-		local tc = t.chrome
-		tc.bg.Color = active and th.tabActive or (hovT and th.tabHover or th.tab)
-		tc.bg.Corner = 7
-		tc.bg.Transparency = visibleT(0)
-		tc.bg.Outline = active
-		setRect(tc.bg, bxx, byy, bw, bh)
+		-- active pill indicator behind tab (glows)
+		if active or c > 0.01 then
+			tc.pill.Color = colorLerp(th.tabHover, th.tabActive, c)
+			tc.pill.Corner = 8
+			tc.pill.Transparency = visibleT(0)
+			tc.pill.Outline = active
+			tc.pill.Thickness = 1
+			setRect(tc.pill, bxx, byy, win.TabWidth - 24, bh)
+			tc.pill.Visible = true
+		else
+			tc.pill.Visible = false
+		end
 
-		tc.color.Color = th.tabActiveAccent
-		tc.color.Corner = 1
-		tc.color.Transparency = active and 0 or 1
-		setRect(tc.color, bxx, byy + 8, 2, bh - 16)
-		tc.color.Visible = active
+		tc.bg.Color = bgColor
+		tc.bg.Corner = 8
+		setRect(tc.bg, bxx, byy, win.TabWidth - 24, bh)
+		tc.bg.Visible = true
 
-		local label = t.Title
-		setText(tc.text, label, bxx + 13, byy + 10, 12,
-			active and th.text or (hovT and th.textDim or th.textFaint), false, true)
+		tc.shadow.Color = th.shadow
+		tc.shadow.Transparency = active and 0.35 or 0
+		tc.shadow.Corner = 10
+		setRect(tc.shadow, bxx + 2, byy + 2, win.TabWidth - 24, bh)
+		tc.shadow.Visible = active
+
+		local label = t.Title or "Tab"
+		local icon = t.Icon or ""
+		tc.icon.Text = icon
+		tc.icon.Color = active and th.accent or (c > 0.2 and th.text or th.textDim)
+		tc.icon.Position = Vector2.new(bxx + 13, byy + 9)
+		tc.icon.Size = 13
+		tc.icon.Visible = #icon > 0
+
+		setText(tc.text, label, bxx + (icon ~= "" and 30 or 14), byy + 9, 13,
+			active and th.accent or (c > 0.2 and th.text or th.textDim), false, true)
+		tc.color.Color = colorLerp(th.accent, th.accent2, 0.2)
+		tc.color.Corner = 3
+		tc.color.Transparency = visibleT(0)
+		setRect(tc.color, bxx + 4, byy + 6 + (1 - c) * 8, 3, 20 * c)
+		tc.color.Visible = c > 0.05
 
 		if state.Click and hovT then
 			win.SelectedTab = t
@@ -2624,9 +3164,8 @@ local function renderWindow(dt)
 		end
 	end
 
-	sel = win.SelectedTab
+	local sel = win.SelectedTab
 	if not sel then return end
-
 	if sel ~= win._lastSelected then
 		if win._lastSelected then
 			for _, node in ipairs(win._lastSelected.nodes) do
@@ -2643,26 +3182,27 @@ local function renderWindow(dt)
 	local maxScroll = math.max(0, sel.contentH - ch + 10)
 	sel.scroll = clampN(sel.scroll, 0, maxScroll)
 
-	local scrollX = cx + cw - SCROLLBAR_W - 6
-	local scrollY = cy + 5
-	local scrollH = ch - 10
+	local scrollX = cx + cw - SCROLLBAR_W - 2
+	local scrollY = cy + 4
+	local scrollH = ch - 8
 
 	if maxScroll > 0 then
-		local thumbHpx = math.max(scrollH * (ch / sel.contentH), 26)
+		local thumbHpx = math.max(scrollH * (ch / sel.contentH), 24)
 		local thumbY = scrollY + (scrollH - thumbHpx) * (sel.scroll / maxScroll)
 
 		chrome.scrollBg.Color = th.elementPress
 		chrome.scrollBg.Corner = 2
 		setRect(chrome.scrollBg, scrollX, scrollY, SCROLLBAR_W, scrollH)
+		chrome.scrollBg.Transparency = visibleT(0)
 		chrome.scrollBg.Visible = true
 
-		local thumbHovD = hit(state.MouseX, state.MouseY, scrollX - 3, thumbY, SCROLLBAR_W + 6, thumbHpx)
+		local thumbHovD = hit(state.MouseX, state.MouseY, scrollX - 2, thumbY, SCROLLBAR_W + 4, thumbHpx)
 		chrome.scrollThumb.Color = thumbHovD and th.scrollHover or th.scroll
 		chrome.scrollThumb.Corner = 2
 		setRect(chrome.scrollThumb, scrollX, thumbY, SCROLLBAR_W, thumbHpx)
 		chrome.scrollThumb.Visible = true
 
-		if state.Click and hit(state.MouseX, state.MouseY, scrollX - 5, scrollY, SCROLLBAR_W + 10, scrollH) then
+		if state.Click and hit(state.MouseX, state.MouseY, scrollX - 4, scrollY, SCROLLBAR_W + 8, scrollH) then
 			win._scrollDrag = true
 			win._scrollOff = state.MouseY - thumbY
 		end
@@ -2680,7 +3220,7 @@ local function renderWindow(dt)
 	if keyJustPressed(0x21) then sel.scroll = math.max(sel.scroll - ch * 0.8, 0) end
 	if keyJustPressed(0x22) then sel.scroll = math.min(sel.scroll + ch * 0.8, maxScroll) end
 
-	local elemPadTop = 10
+	local elemPadTop = 8
 	local elemW = cw - CONTENT_PAD_X * 2 - (maxScroll > 0 and (SCROLLBAR_W + 10) or 0)
 	local elemX = cx + CONTENT_PAD_X
 
@@ -2688,15 +3228,31 @@ local function renderWindow(dt)
 		if node.kind == "section" then
 			local sec = node.section
 			if not sec.isRoot then
-				if not sec.text then sec.text = newText(TEXT_FONT_TITLE) end
-				local sy = cy + sec.y - sel.scroll + 2
+				if not sec.text then
+					sec.text = newText(TEXT_FONT_TITLE)
+					sec.text2 = newText(TEXT_FONT_TITLE)
+					sec.line = newSquare()
+					sec.dot = newSquare()
+				end
+				local sy = cy + sec.y - sel.scroll + 6
+				local vis = sy > cy - 20 and sy < cy + ch
 				local headText = (sec.Title or ""):upper()
-				setText(sec.text, headText, elemX, sy, 9, th.textFaint, false, sy > cy - 20 and sy < cy + ch)
+				setGradientText(sec.text, sec.text2, headText, elemX + 14, sy, 11,
+					colorLerp(th.accent, th.text, 0.35), colorLerp(th.accent2, th.text, 0.25), false, vis and true or false)
+				sec.line.Color = th.border
+				sec.line.Corner = 1
+				setRect(sec.line, elemX + 14 + textW(headText, 11) + 12, sy + 7, cw - (14 + textW(headText, 11) + 12) - 16, 1)
+				sec.line.Transparency = visibleT(0)
+				sec.line.Visible = vis
+				sec.dot.Color = colorLerp(th.accent, th.accent2, 0.2)
+				sec.dot.Corner = 2
+				setRect(sec.dot, elemX + 4, sy + 2, 4, 8)
+				sec.dot.Visible = vis
 			end
 		else
 			local el = node.element
 			if el._visible then
-				el:_update(dt, elemX, cy + elemPadTop, elemW, ch - 12, sel.scroll)
+				el:_update(dt, elemX, cy + elemPadTop, elemW, ch - 8, sel.scroll)
 			end
 		end
 	end
@@ -2735,11 +3291,14 @@ local notifPool = {}
 local notifActive = {}
 
 local NOTIF_W = 300
-local NOTIF_PAD = 14
+local NOTIF_PAD = 12
 
 for i = 1, notifSlots do
 	notifPool[i] = {
+		shadow = newSquare(),
 		bg = newSquare(),
+		border = newSquare(),
+		accent = newSquare(),
 		title = newText(TEXT_FONT_TITLE),
 		content = newText(TEXT_FONT_BODY),
 		close = newText(TEXT_FONT_BODY),
@@ -2757,6 +3316,7 @@ function Nebula:Notify(config)
 		end
 	end
 	if not slot then return nil end
+	local kind = config.Type
 	local n = {
 		title = config.Title or "",
 		content = config.Content or config.SubContent or "",
@@ -2764,14 +3324,15 @@ function Nebula:Notify(config)
 		t = 0,
 		buttons = config.Buttons,
 		removed = false,
+		type = kind,
 		slot = slot,
-		h = (config.Buttons and 84 or (config.SubContent and 62 or (config.Content and 62 or 44))),
+		h = (config.Buttons and 88 or (config.SubContent and 64 or (config.Content and 64 or 48))),
 	}
 	slot.inUse = true
 	if config.Buttons then
 		n._bPool = {}
 		for bi, b in ipairs(config.Buttons) do
-			n._bPool[bi] = { bg = newSquare(), text = newText(TEXT_FONT_BODY) }
+			n._bPool[bi] = { bg = newSquare(), text = newText(TEXT_FONT_BODY), border = newSquare() }
 		end
 	end
 	table.insert(notifActive, n)
@@ -2791,37 +3352,71 @@ local function renderNotifications(dt)
 
 		local slot = n.slot
 		local y = bottomY - n.h * (#notifActive - i + 1) - 8 * (#notifActive - i)
-		local appear = clampN(n.t / 0.2, 0, 1)
-		local xoff = (1 - appear) * 40
+		local appear = clampN(n.t / 0.25, 0, 1)
+		appear = easeOutBack(appear)
+		local xoff = (1 - appear) * (NOTIF_W + 30)
+
+		slot.shadow.Color = th.shadow
+		slot.shadow.Transparency = 0.35
+		slot.shadow.Corner = 10
+		setRect(slot.shadow, x + xoff + 2, y + 2, NOTIF_W, n.h)
+		slot.shadow.Visible = true
 
 		slot.bg.Color = th.title
-		slot.bg.Corner = 7
+		slot.bg.Corner = 10
 		slot.bg.Transparency = visibleT(0)
 		slot.bg.Outline = true
+		slot.bg.Thickness = 1
 		setRect(slot.bg, x + xoff, y, NOTIF_W, n.h)
 		slot.bg.Visible = true
 
-		setText(slot.title, n.title, x + xoff + 12, y + 8, 13, th.text, false, true)
-		setText(slot.content, n.content, x + xoff + 12, y + 29, 11, th.textDim, false, true)
-		setText(slot.close, "x", x + xoff + NOTIF_W - 17, y + 8, 12, th.textFaint, true, true)
+		-- left accent stripe
+		local accentC = n.type == "success" and th.success or n.type == "warning" and th.warning or n.type == "danger" and th.danger or colorLerp(th.accent, th.accent2, 0.2)
+		slot.accent.Color = accentC
+		slot.accent.Corner = 4
+		setRect(slot.accent, x + xoff, y + 6, 3, n.h - 12)
+		slot.accent.Visible = true
 
-		if state.Click and hit(state.MouseX, state.MouseY, x + xoff + NOTIF_W - 24, y + 6, 20, 18) then
+		setText(slot.title, n.title, x + xoff + 16, y + 9, 13, th.text, false, true)
+		setText(slot.content, n.content, x + xoff + 16, y + 28, 11, th.textDim, false, true)
+
+		local closeH = hit(state.MouseX, state.MouseY, x + xoff + NOTIF_W - 26, y + 6, 20, 20)
+		setText(slot.close, "x", x + xoff + NOTIF_W - 16, y + 8, 12, closeH and th.textDim or th.textFaint, true, true)
+		slot.close.Visible = true
+
+		if state.Click and closeH then
 			n.removed = true
 		end
 
 		if n.buttons and n._bPool then
-			local bx = x + xoff + 12
-			local byb = y + n.h - 22
+			local bx = x + xoff + 16
+			local byb = y + n.h - 26
+			local btotal = 0
+			local bwArr = {}
+			for bi, b in ipairs(n.buttons) do
+				local bw = math.min(math.max(textW(b.Title or "", 11) + 22, 48), 90)
+				bwArr[bi] = bw
+				btotal = btotal + bw + 6
+			end
+			bx = x + xoff + math.max(16, (NOTIF_W - btotal) / 2)
 			for bi, b in ipairs(n.buttons) do
 				if n._bPool[bi] then
 					local bb = n._bPool[bi]
-					local bw = math.min(math.max(textW(b.Title or "", 11) + 20, 44), 90)
-					bb.bg.Color = th.accent
-					bb.bg.Corner = 4
-					setRect(bb.bg, bx, byb, bw, 16)
+					local bw = bwArr[bi]
+					local bhov = hit(state.MouseX, state.MouseY, bx, byb, bw, 20)
+					bb.border.Color = th.border
+					bb.border.Corner = 5
+					bb.border.Outline = true
+					bb.border.Filled = false
+					bb.border.Thickness = 1
+					setRect(bb.border, bx, byb, bw, 20)
+					bb.border.Visible = true
+					bb.bg.Color = bhov and colorLerp(th.accent, th.accent2, 0.15) or th.accent
+					bb.bg.Corner = 5
+					setRect(bb.bg, bx, byb, bw, 20)
 					bb.bg.Visible = true
-					setText(bb.text, b.Title, bx + bw / 2, byb + 2, 10, th.titleBarText, true, true)
-					if state.Click and hit(state.MouseX, state.MouseY, bx, byb, bw, 16) then
+					setText(bb.text, b.Title, bx + bw / 2, byb + 4, 10, th.titleBarText, true, true)
+					if state.Click and hit(state.MouseX, state.MouseY, bx, byb, bw, 20) then
 						safeCallback(b.Callback)
 						n.removed = true
 					end
@@ -2836,7 +3431,10 @@ local function renderNotifications(dt)
 		if n.removed then
 			table.remove(notifActive, i)
 			n.slot.inUse = false
+			n.slot.shadow.Visible = false
 			n.slot.bg.Visible = false
+			n.slot.border.Visible = false
+			n.slot.accent.Visible = false
 			n.slot.title.Visible = false
 			n.slot.content.Visible = false
 			n.slot.close.Visible = false
@@ -2844,6 +3442,7 @@ local function renderNotifications(dt)
 				for _, bb in ipairs(n._bPool) do
 					bb.bg:Remove()
 					bb.text:Remove()
+					bb.border:Remove()
 				end
 			end
 		end
@@ -2863,10 +3462,13 @@ function Dialog:Close()
 	currentDialog = nil
 	if self._overlay then self._overlay.Visible = false end
 	if self._panel then self._panel.Visible = false end
+	if self._shadow then self._shadow.Visible = false end
+	if self._border then self._border.Visible = false end
 	for _, t in ipairs(self._texts) do t.Visible = false end
 	for _, b in ipairs(self._buttons) do
 		b.bg.Visible = false
 		b.text.Visible = false
+		b.border.Visible = false
 	end
 	if self._onClosed then
 		for _, fn in ipairs(self._onClosed) do
@@ -2894,61 +3496,99 @@ function Win:Dialog(config)
 
 	d._overlay = newSquare()
 	d._overlay.Color = t.dialogOverlay
-	d._overlay.Transparency = 0.55
+	d._overlay.Transparency = 0.6
 	d._overlay.ZIndex = 900
 	setRect(d._overlay, 0, 0, state.viewW, state.viewH)
-	d._overlay.Visible = false
+	d._overlay.Visible = true
+
+	d._shadow = newSquare()
+	d._shadow.Color = t.shadow
+	d._shadow.Transparency = 0.4
+	d._shadow.Corner = 12
+	d._shadow.ZIndex = 900
+	d._shadow.Visible = false
 
 	d._panel = newSquare()
 	d._panel.Color = t.content
-	d._panel.Corner = 8
+	d._panel.Corner = 12
 	d._panel.ZIndex = 901
+	d._panel.Outline = true
+	d._panel.Thickness = 1
 	d._panel.Visible = false
+
+	d._border = newSquare()
+	d._border.Color = t.border
+	d._border.Corner = 12
+	d._border.Outline = true
+	d._border.Filled = false
+	d._border.Thickness = 1
+	d._border.ZIndex = 902
+	d._border.Visible = false
 
 	local pw = 360
 	local lines = {}
 	for line in string.gmatch(config.Content or "", "[^\n]*") do
 		if #line > 0 then table.insert(lines, line) end
 	end
-	local ph = 48 + math.max(#lines, 1) * 18 + 48
+	local ph = 46 + math.max(#lines, 1) * 18 + 46
 	local px = clampN((state.viewW - pw) / 2, 4, state.viewW - pw - 4)
 	local py = clampN((state.viewH - ph) / 2, 4, state.viewH - ph - 4)
 
+	setRect(d._shadow, px + 4, py + 5, pw, ph)
 	setRect(d._panel, px, py, pw, ph)
+	setRect(d._border, px, py, pw, ph)
 
 	local tt = newText(TEXT_FONT_TITLE)
-	tt.ZIndex = 902
-	setText(tt, config.Title or "", px + 16, py + 14, 15, t.text, false, false)
+	tt.ZIndex = 903
+	setText(tt, config.Title or "", px + 18, py + 15, 16, t.text, false, false)
 	table.insert(d._texts, tt)
 
-	local ly = py + 42
+	local thLine = newSquare()
+	thLine.Color = colorLerp(t.accent, t.accent2, 0.2)
+	thLine.Corner = 2
+	thLine.ZIndex = 902
+	setRect(thLine, px + 18, py + 32, 42, 3)
+	thLine.Visible = false
+	table.insert(d._texts, thLine)
+
+	local ly = py + 48
 	local contentColor = t.textDim
 	for i, line in ipairs(lines) do
 		if i <= 5 then
 			local ct = newText(TEXT_FONT_BODY)
-			ct.ZIndex = 902
-			setText(ct, line, px + 16, ly, 12, contentColor, false, false)
+			ct.ZIndex = 903
+			setText(ct, line, px + 18, ly, 12, contentColor, false, false)
 			table.insert(d._texts, ct)
-			ly = ly + 17
+			ly = ly + 18
 		end
 	end
 
 	local btns = config.Buttons or {}
-	local bxStart = px + pw - 16
-	local by = py + ph - 30
+	local bxStart = px + pw - 18
+	local by = py + ph - 32
 	for i, b in ipairs(btns) do
 		if i > 2 then break end
-		local bw = textW(b.Title or "", 12) + 32
+		local bw = textW(b.Title or "", 12) + 36
 		bxStart = bxStart - bw
 		local bbg = newSquare()
-		bbg.ZIndex = 903
+		bbg.ZIndex = 904
 		bbg.Corner = 6
-		bbg.Color = i == 1 and t.accent or t.elementHover
-		setRect(bbg, bxStart, by, bw, 22)
+		bbg.Color = i == 1 and colorLerp(t.accent, t.accent2, 0.15) or t.elementHover
+		bbg.Outline = i ~= 1
+		bbg.Thickness = 1
+		setRect(bbg, bxStart, by, bw, 24)
+		local bbdr = newSquare()
+		bbdr.ZIndex = 904
+		bbdr.Corner = 6
+		bbdr.Outline = true
+		bbdr.Filled = false
+		bbdr.Thickness = 1
+		bbdr.Color = t.border
+		setRect(bbdr, bxStart, by, bw, 24)
 		local btxt = newText(TEXT_FONT_BODY)
-		btxt.ZIndex = 904
+		btxt.ZIndex = 905
 		setText(btxt, b.Title, bxStart + bw / 2, by + 4, 12, i == 1 and t.titleBarText or t.text, true, false)
-		table.insert(d._buttons, { bg = bbg, text = btxt, title = b.Title, x = bxStart, y = by, w = bw, h = 22, cb = b.Callback })
+		table.insert(d._buttons, { bg = bbg, border = bbdr, text = btxt, title = b.Title, x = bxStart, y = by, w = bw, h = 24, cb = b.Callback })
 		bxStart = bxStart - 8
 	end
 
@@ -2956,18 +3596,23 @@ function Win:Dialog(config)
 		if d._closed then return end
 		local thx = theme()
 		d._overlay.Visible = true
+		d._shadow.Visible = true
 		d._panel.Visible = true
+		d._border.Visible = true
 		d._panel.Color = thx.content
+		for _, tx in ipairs(d._texts) do tx.Visible = true end
 		for _, b in ipairs(d._buttons) do
 			local hovBtn = hit(state.MouseX, state.MouseY, b.x, b.y, b.w, b.h)
-			if b.bg.Visible == false then
-				b.bg.Visible = true
-				b.text.Visible = true
-			end
-			b.bg.Color = b.cb and (b.title == (btns[1] and btns[1].Title or "")) and thx.accent or (hovBtn and thx.elementHover or thx.elementPress)
 			b.bg.Visible = true
+			b.border.Visible = true
 			b.text.Visible = true
-			b.text.Color = b.title == (btns[1] and btns[1].Title or "") and thx.titleBarText or thx.text
+			if b.cb and b.title == (btns[1] and btns[1].Title or "") then
+				b.bg.Color = colorLerp(thx.accent, thx.accent2, 0.15)
+			elseif hovBtn then
+				b.bg.Color = thx.elementHover
+			else
+				b.bg.Color = thx.elementPress
+			end
 			if state.Click and hovBtn then
 				if b.cb then safeCallback(b.cb) end
 				d:Close()
@@ -2979,10 +3624,13 @@ function Win:Dialog(config)
 	table.insert(d._onClosed, function()
 		d._overlay:Remove()
 		d._panel:Remove()
+		d._shadow:Remove()
+		d._border:Remove()
 		for _, tx in ipairs(d._texts) do tx:Remove() end
 		for _, b in ipairs(d._buttons) do
 			b.bg:Remove()
 			b.text:Remove()
+			b.border:Remove()
 		end
 	end)
 
@@ -3013,7 +3661,7 @@ local function frame(dt)
 	if win and win.alive then
 		renderWindow(dt)
 		handleKeybinds()
-		if win.MinimizeKey then
+		if win.MinimizeKey and not state.focusedInput and not state.focusedEdit and not state.listeningKeybind then
 			local mk = type(win.MinimizeKey) == "number" and win.MinimizeKey or vkFromName(win.MinimizeKey)
 			if mk and keyJustPressed(mk) then
 				Nebula:Minimize()
@@ -3054,12 +3702,12 @@ end
 local defaultOptions = {
 	Title = "Nebula",
 	SubTitle = "",
-	Size = Vector2.new(640, 500),
-	MinSize = Vector2.new(520, 400),
+	Size = Vector2.new(600, 480),
+	MinSize = Vector2.new(480, 400),
 	Resize = false,
-	TabWidth = 154,
-	Theme = "Dark",
-	Translucent = true,
+	TabWidth = 172,
+	Theme = "Aurora",
+	Translucent = false,
 	MinimizeKey = "End",
 	ConfigName = nil,
 	AutoStep = true,
@@ -3093,31 +3741,41 @@ function Nebula:CreateWindow(config)
 		end
 		return nil
 	end
-	config.Size = pixelDim(config.Size) or Vector2.new(580, 460)
-	config.MinSize = pixelDim(config.MinSize) or Vector2.new(470, 380)
+	config.Size = pixelDim(config.Size) or Vector2.new(600, 480)
+	config.MinSize = pixelDim(config.MinSize) or Vector2.new(480, 400)
 
 	if config.Resize then
 		local kx = winViewW / 1920
 		local ky = winViewH / 1080
-		config.Size = config.Size and Vector2.new(config.Size.X * kx, config.Size.Y * ky) or Vector2.new(580, 460)
-		config.MinSize = config.MinSize and Vector2.new(config.MinSize.X * kx, config.MinSize.Y * ky) or Vector2.new(470, 380)
+		config.Size = config.Size and Vector2.new(config.Size.X * kx, config.Size.Y * ky) or Vector2.new(600, 480)
+		config.MinSize = config.MinSize and Vector2.new(config.MinSize.X * kx, config.MinSize.Y * ky) or Vector2.new(480, 400)
 		config.TabWidth = intRound(config.TabWidth * kx)
 	end
 
-	themeName = config.Theme or "Dark"
-	if not Themes[themeName] then themeName = "Dark" end
-	translucent = config.Translucent ~= false
+	themeName = config.Theme or "Aurora"
+	if not Themes[themeName] then themeName = "Aurora" end
+	translucent = config.Translucent == true
 
 	win = buildWindow(config)
 	win.config = config
 	win.UpdateMinKey = config.MinimizeKey
 	win.MinimizeKey = type(config.MinimizeKey) == "number" and config.MinimizeKey or vkFromName(config.MinimizeKey) or EndC
 
+	chrome.shadow1 = newSquare()
+	chrome.shadow2 = newSquare()
+	chrome.shadow3 = newSquare()
 	chrome.bg = newSquare()
+	chrome.frame = newSquare()
 	chrome.accent = newSquare()
+	chrome.accentA = newSquare()
+	chrome.accentB = newSquare()
+	chrome.accentC = newSquare()
 	chrome.title = newSquare()
 	chrome.titleText = newText(TEXT_FONT_TITLE)
+	chrome.titleText2 = newText(TEXT_FONT_TITLE)
 	chrome.subText = newText(TEXT_FONT_BODY)
+	chrome.iconBg = newSquare()
+	chrome.iconText = newText(TEXT_FONT_TITLE)
 	chrome.closeBg = newSquare()
 	chrome.closeText = newText(TEXT_FONT_BODY)
 	chrome.maxBg = newSquare()
@@ -3130,9 +3788,6 @@ function Nebula:CreateWindow(config)
 	chrome.resizeGrip = newLine()
 	chrome.scrollBg = newSquare()
 	chrome.scrollThumb = newSquare()
-	chrome.pageBar = newSquare()
-	chrome.pageTitle = newText(TEXT_FONT_TITLE)
-	chrome.pageSub = newText(TEXT_FONT_BODY)
 
 	loaded = true
 	unloaded = false
@@ -3169,6 +3824,7 @@ end
 function Nebula:Destroy()
 	if unloaded then return end
 	unloaded = true
+	loaded = false
 	Nebula.Unloaded = true
 	Nebula.Loaded = false
 	if conn then
@@ -3178,15 +3834,21 @@ function Nebula:Destroy()
 	if win then
 		for _, t in ipairs(win.Tabs) do
 			if t.chrome then
+				t.chrome.shadow:Remove()
 				t.chrome.bg:Remove()
+				t.chrome.pill:Remove()
 				t.chrome.text:Remove()
+				t.chrome.icon:Remove()
 				t.chrome.color:Remove()
+				t.chrome.underline:Remove()
 			end
 			for _, node in ipairs(t.nodes) do
 				if node.kind == "element" and node.element._destroyDrawings then
 					node.element:_destroyDrawings()
 				elseif node.kind == "section" and node.section.text then
 					node.section.text:Remove()
+					if node.section.line then node.section.line:Remove() end
+					if node.section.dot then node.section.dot:Remove() end
 				end
 			end
 		end
@@ -3195,7 +3857,10 @@ function Nebula:Destroy()
 		if type(d) == "table" and d.Remove then d:Remove() end
 	end
 	for _, slot in ipairs(notifPool) do
+		slot.shadow:Remove()
 		slot.bg:Remove()
+		slot.border:Remove()
+		slot.accent:Remove()
 		slot.title:Remove()
 		slot.content:Remove()
 		slot.close:Remove()
@@ -3209,6 +3874,16 @@ end
 function Nebula:Minimize()
 	if not win then return end
 	win.minimized = not win.minimized
+	if win.minimized then
+		win.dragging = false
+		win.resizing = false
+		win._scrollDrag = false
+		for pop in pairs(allPopups) do
+			if type(pop._outerClick) == "function" then
+				pop:_outerClick()
+			end
+		end
+	end
 	for _, fn in ipairs(minimizedCallbacks) do
 		safeCallback(fn, win.minimized)
 	end
@@ -3280,7 +3955,7 @@ function Nebula:SaveConfig(name)
 	local ok, encoded = pcall(HttpService.JSONEncode, HttpService, data)
 	if ok then
 		writefile(FOLDER .. "/" .. name .. ".json", encoded)
-		Nebula:Notify({ Title = "Config saved", Content = name, Duration = 3 })
+		Nebula:Notify({ Title = "Config saved", Content = name, Duration = 3, Type = "success" })
 		return true
 	end
 	return false
@@ -3288,7 +3963,7 @@ end
 
 function Nebula:LoadConfig(name)
 	if not isfile(FOLDER .. "/" .. name .. ".json") then
-		Nebula:Notify({ Title = "Config not found", Content = tostring(name), Duration = 3 })
+		Nebula:Notify({ Title = "Config not found", Content = tostring(name), Duration = 3, Type = "warning" })
 		return false
 	end
 	local data = readfile(FOLDER .. "/" .. name .. ".json")
@@ -3299,7 +3974,7 @@ function Nebula:LoadConfig(name)
 			applyValue(Nebula.Options[id], v)
 		end
 	end
-	Nebula:Notify({ Title = "Config loaded", Content = tostring(name), Duration = 3 })
+	Nebula:Notify({ Title = "Config loaded", Content = tostring(name), Duration = 3, Type = "success" })
 	return true
 end
 
@@ -3334,6 +4009,7 @@ function Win:BuildInterfaceSection(tab)
 	})
 	tab:AddButton({
 		Title = "Toggle translucency",
+		Description = "Switch between solid and glass panels",
 		Callback = function()
 			Nebula:SetTranslucent(not translucent)
 		end,
@@ -3365,6 +4041,7 @@ function Win:BuildConfigSection(tab)
 	})
 	tab:AddButton({
 		Title = "Save config",
+		Style = "accent",
 		Callback = function()
 			local name = inp.Value
 			if name and #name > 0 then
@@ -3379,7 +4056,7 @@ function Win:BuildConfigSection(tab)
 			local name = inp.Value
 			if name and #name > 0 then
 				Nebula:SetAutoload(name)
-				Nebula:Notify({ Title = "Autoload set", Content = name, Duration = 3 })
+				Nebula:Notify({ Title = "Autoload set", Content = name, Duration = 3, Type = "success" })
 			end
 		end,
 	})
